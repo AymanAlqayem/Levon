@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +34,6 @@ public class HomePageActivity extends AppCompatActivity {
 
         // Setup the categories list,
         ListView categoryList = setUpCategories();
-
 
         // Handle ListView item clicks
         handleCategoryItemOnClick(categoryList);
@@ -94,14 +94,21 @@ public class HomePageActivity extends AppCompatActivity {
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
         navigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+            Intent intent;
             if (itemId == R.id.nav_search) {
-                Toast.makeText(HomePageActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                // Navigate to the SearchActivity
+//                intent = new Intent(HomePageActivity.this, SearchActivity.class);
+//                startActivity(intent);
                 return true;
             } else if (itemId == R.id.nav_favorite) {
-                Toast.makeText(HomePageActivity.this, "Favorite clicked", Toast.LENGTH_SHORT).show();
+                // Navigate to the FavoritesActivity
+//                intent = new Intent(HomePageActivity.this, FavoritesActivity.class);
+//                startActivity(intent);
                 return true;
             } else if (itemId == R.id.nav_cart) {
-                Toast.makeText(HomePageActivity.this, "Cart clicked", Toast.LENGTH_SHORT).show();
+                // Navigate to the CartActivity
+//                intent = new Intent(HomePageActivity.this, CartActivity.class);
+//                startActivity(intent);
                 return true;
             }
             return false;

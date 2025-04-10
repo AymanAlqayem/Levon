@@ -34,7 +34,6 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Button addToCartButton;
     private Button favoriteButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +172,10 @@ public class ItemDetailActivity extends AppCompatActivity {
                 editor.putString("CartItems", updatedArray.toString());
                 editor.apply();
 
+                // Change the button text and disable it
+                addToCartButton.setText("Added to Cart");
+                addToCartButton.setEnabled(false); // Optional, to disable the button after adding
+
                 Toast.makeText(this, item.getName() + " added to cart", Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
                 android.util.Log.e("ItemDetailActivity", "Error updating cart", e);
@@ -180,6 +183,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         });
     }
+
 
     /**
      * handleFavoriteButton method that will handle the favorite button.

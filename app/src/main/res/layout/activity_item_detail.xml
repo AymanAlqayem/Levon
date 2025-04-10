@@ -1,97 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="200dp"
+        android:contentDescription="Item image"
         android:scaleType="centerCrop"
-        android:contentDescription="Item image" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/item_name"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_image" />
 
     <TextView
         android:id="@+id/item_description"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_name" />
 
     <TextView
         android:id="@+id/item_price"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_description" />
 
     <TextView
         android:id="@+id/stock_message"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="In stock: 10"
+        android:layout_marginTop="8dp"
+        android:text="In stock: "
         android:textSize="16sp"
-        android:layout_marginTop="8dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_price" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:background="@android:drawable/editbox_background"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:padding="8dp"
-        android:layout_marginTop="16dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/stock_message">
 
         <ImageButton
             android:id="@+id/minus_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@android:drawable/ic_media_rew"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Decrease quantity"
-            android:background="?android:attr/selectableItemBackground" />
+            android:src="@android:drawable/ic_media_rew" />
 
         <TextView
             android:id="@+id/quantity_text"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
-            android:text="1"
-            android:textSize="18sp"
-            android:gravity="center"
             android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" />
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="18sp" />
 
         <ImageButton
             android:id="@+id/plus_button"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@android:drawable/ic_media_ff"
+            android:background="?android:attr/selectableItemBackground"
             android:contentDescription="Increase quantity"
-            android:background="?android:attr/selectableItemBackground" />
+            android:src="@android:drawable/ic_media_ff" />
     </LinearLayout>
 
     <Button
         android:id="@+id/add_to_cart_button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#E78B48"
+        android:drawableLeft="@drawable/ic_cart"
+        android:drawablePadding="8dp"
+        android:gravity="center"
         android:text="Add to Cart"
-        android:backgroundTint="#FF6200EE"
-        android:layout_marginTop="16dp" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@id/favorite_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/favorite_button"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8B0000"
+        android:drawableLeft="@drawable/ic_favorite"
+        android:drawablePadding="8dp"
+        android:gravity="center"
         android:text="Add to Favorites"
-        android:layout_marginTop="8dp" />
-</LinearLayout>
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
