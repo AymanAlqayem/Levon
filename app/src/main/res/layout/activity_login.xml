@@ -10,7 +10,6 @@
 
     <TextView
         android:id="@+id/textView"
-        style="@style/CustomTextView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="51dp"
@@ -26,7 +25,6 @@
 
     <EditText
         android:id="@+id/edtUserNameLogin"
-        style="@style/CustomEditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="25dp"
@@ -35,6 +33,7 @@
         android:ems="10"
         android:hint="enter your name"
         android:inputType="text"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/edtPassLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +41,6 @@
 
     <EditText
         android:id="@+id/edtPassLogin"
-        style="@style/CustomEditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="28dp"
@@ -51,6 +49,7 @@
         android:ems="10"
         android:hint="enter_your_password"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/loginCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +83,6 @@
 
     <TextView
         android:id="@+id/txtCreateAccount"
-        style="@style/CustomTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="54dp"
