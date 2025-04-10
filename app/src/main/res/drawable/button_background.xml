@@ -1,0 +1,20 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- When the button is pressed (simulate hover) -->
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="#292929" />
+            <corners android:radius="30dp"/>
+            <stroke android:color="#666666" android:width="2dp"/>
+            <scale android:scaleX="1.05" android:scaleY="1.05"/> <!-- Scale effect when pressed -->
+        </shape>
+    </item>
+
+    <!-- Default state -->
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="#1a1a1a" />
+            <corners android:radius="30dp"/>
+            <stroke android:color="#2c2c2c" android:width="2dp"/>
+        </shape>
+    </item>
+</selector>
