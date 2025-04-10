@@ -16,9 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
+public class HomePageActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
             "Jewelry",
             "Ayman",
@@ -28,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_home_page);
 
         // Initialize ItemManager.
         ItemManager.initializeItems(this);
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent;
             switch (category) {
                 case "Jewelry":
-                    intent = new Intent(MainActivity.this, JewelryActivity.class);
+                    intent = new Intent(HomePageActivity.this, JewelryActivity.class);
                     break;
                 default:
                     return;
@@ -97,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_search) {
-                Toast.makeText(MainActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (itemId == R.id.nav_favorite) {
-                Toast.makeText(MainActivity.this, "Favorite clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageActivity.this, "Favorite clicked", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (itemId == R.id.nav_cart) {
-                Toast.makeText(MainActivity.this, "Cart clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HomePageActivity.this, "Cart clicked", Toast.LENGTH_SHORT).show();
                 return true;
             }
             return false;
