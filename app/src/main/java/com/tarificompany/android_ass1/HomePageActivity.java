@@ -107,8 +107,8 @@ public class HomePageActivity extends AppCompatActivity {
                 return true;
             } else if (itemId == R.id.nav_cart) {
                 // Navigate to the CartActivity
-//                intent = new Intent(HomePageActivity.this, CartActivity.class);
-//                startActivity(intent);
+                intent = new Intent(HomePageActivity.this, CartActivity.class);
+                startActivity(intent);
                 return true;
             }
             return false;

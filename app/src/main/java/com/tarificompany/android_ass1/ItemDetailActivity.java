@@ -184,7 +184,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
     }
 
-
     /**
      * handleFavoriteButton method that will handle the favorite button.
      */
@@ -216,4 +215,40 @@ public class ItemDetailActivity extends AppCompatActivity {
             favoriteButton.setText("Add to Favorites");
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkIfItemInCart();
+    }
+
+    private void checkIfItemInCart() {
+        SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
+        String cartJson = prefs.getString("CartItems", "[]");
+        ArrayList<CartItem> cartItems = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(cartJson);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonItem = jsonArray.getJSONObject(i);
+                cartItems.add(CartItem.fromJson(jsonItem, ItemDetailActivity.this));
+            }
+
+            // Check if the item already exists in the cart
+            for (CartItem cartItem : cartItems) {
+                if (cartItem.getItem().getId() == item.getId()) {
+                    addToCartButton.setText("Added to Cart");
+                    addToCartButton.setEnabled(false); // Disable the button if the item is already in the cart
+                    break;
+                } else {
+                    addToCartButton.setText("Add to Cart");
+                    addToCartButton.setEnabled(true); // Enable the button if the item is not in the cart
+                }
+            }
+
+        } catch (JSONException e) {
+            android.util.Log.e("ItemDetailActivity", "Error checking cart items", e);
+        }
+    }
+
 }

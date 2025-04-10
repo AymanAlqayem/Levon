@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Currated to you, Delivered to Door."
+        android:text="Currated for you, Delivered to Door."
         android:textAlignment="center"
         android:textSize="24sp" />
 </androidx.appcompat.widget.LinearLayoutCompat>
