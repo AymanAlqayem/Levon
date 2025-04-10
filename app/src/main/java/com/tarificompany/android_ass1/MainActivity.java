@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
             "Jewelry",
@@ -28,11 +30,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize ItemManager
+        // Initialize ItemManager.
         ItemManager.initializeItems(this);
 
+        // Setup the categories list,
+        ListView categoryList = setUpCategories();
+
+
+        // Handle ListView item clicks
+        handleCategoryItemOnClick(categoryList);
+
+        // Handle BottomNavigationView
+        handleNavigationView();
+    }
+
+    /**
+     * setUpCategories method that will Set up a ListView for categories
+     */
+    public ListView setUpCategories() {
         // Set up the ListView for categories
         ListView categoryList = findViewById(R.id.category_list);
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, CATEGORIES) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
@@ -49,8 +67,13 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         categoryList.setAdapter(adapter);
+        return categoryList;
+    }
 
-        // Handle ListView item clicks
+    /**
+     * handleCategoryItemOnClick method that will show a list of items for the selected category.
+     */
+    public void handleCategoryItemOnClick(ListView categoryList) {
         categoryList.setOnItemClickListener((parent, view, position, id) -> {
             String category = CATEGORIES[position];
             Intent intent;
@@ -63,10 +86,15 @@ public class MainActivity extends AppCompatActivity {
             }
             startActivity(intent);
         });
+    }
 
+    /**
+     * handleNavigationView method that will handle the the views in the nav.
+     */
+    public void handleNavigationView() {
         // Set up the BottomNavigationView
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnItemSelectedListener(item -> {
+        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
+        navigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_search) {
                 Toast.makeText(MainActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();

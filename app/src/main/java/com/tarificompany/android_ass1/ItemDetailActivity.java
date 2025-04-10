@@ -23,20 +23,66 @@ public class ItemDetailActivity extends AppCompatActivity {
     private Item item;
     private int quantity = 1; // Default quantity
 
+    private ImageView itemImageView;
+    private TextView itemNameView;
+    private TextView itemDescView;
+    private TextView itemPriceView;
+    private TextView stockMessageView;
+    private TextView quantityText;
+    private ImageButton minusButton;
+    private ImageButton plusButton;
+    private Button addToCartButton;
+    private Button favoriteButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
-        // Get item details from intent
+        setUpViews();
+
+        initializeItem();
+
+        handlePlusMinusButtons();
+
+        handleCartButton();
+
+        handleFavoriteButton();
+    }
+
+    /**
+     * setUpViews method that will initialize the hooks.
+     */
+    public void setUpViews() {
+        // Initialize views
+        itemImageView = findViewById(R.id.item_image);
+        itemNameView = findViewById(R.id.item_name);
+        itemDescView = findViewById(R.id.item_description);
+        itemPriceView = findViewById(R.id.item_price);
+        stockMessageView = findViewById(R.id.stock_message);
+        quantityText = findViewById(R.id.quantity_text);
+        minusButton = findViewById(R.id.minus_button);
+        plusButton = findViewById(R.id.plus_button);
+        addToCartButton = findViewById(R.id.add_to_cart_button);
+        favoriteButton = findViewById(R.id.favorite_button);
+
+    }
+
+    /**
+     * initializeItem method that will set the item details;
+     */
+    public void initializeItem() {
+        // Get item details from intent.
         Intent intent = getIntent();
+
         int itemId = intent.getIntExtra("item_id", -1);
         String itemName = intent.getStringExtra("item_name");
         String itemDesc = intent.getStringExtra("item_desc");
         int itemImage = intent.getIntExtra("item_image", 0);
         double itemPrice = intent.getDoubleExtra("item_price", 0.0);
 
-        // Find the item in ItemManager to get the stock
+        // Find the item in ItemManager to get the stock.
         item = null;
         for (Item i : ItemManager.getAllItems(this)) {
             if (i.getId() == itemId) {
@@ -50,19 +96,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             finish();
             return;
         }
-
-        // Initialize views
-        ImageView itemImageView = findViewById(R.id.item_image);
-        TextView itemNameView = findViewById(R.id.item_name);
-        TextView itemDescView = findViewById(R.id.item_description);
-        TextView itemPriceView = findViewById(R.id.item_price);
-        TextView stockMessageView = findViewById(R.id.stock_message);
-        TextView quantityText = findViewById(R.id.quantity_text);
-        ImageButton minusButton = findViewById(R.id.minus_button);
-        ImageButton plusButton = findViewById(R.id.plus_button);
-        Button addToCartButton = findViewById(R.id.add_to_cart_button);
-        Button favoriteButton = findViewById(R.id.favorite_button);
-
         // Set item details
         itemImageView.setImageResource(itemImage);
         itemNameView.setText(itemName);
@@ -70,7 +103,12 @@ public class ItemDetailActivity extends AppCompatActivity {
         itemPriceView.setText(String.format("$%.2f", itemPrice));
         stockMessageView.setText("In stock: " + item.getStock());
         quantityText.setText(String.valueOf(quantity));
+    }
 
+    /**
+     * handlePlusMinusButtons method that will handle both Plus and Minus buttons.
+     */
+    public void handlePlusMinusButtons() {
         // Handle minus button
         minusButton.setOnClickListener(v -> {
             if (quantity > 1) {
@@ -89,6 +127,13 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    /**
+     * handleCartButton method that will handle the add to cart button.
+     */
+    public void handleCartButton() {
         // Add to cart
         addToCartButton.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
@@ -134,8 +179,12 @@ public class ItemDetailActivity extends AppCompatActivity {
                 Toast.makeText(this, "Error adding to cart", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        // Add to favorites
+    /**
+     * handleFavoriteButton method that will handle the favorite button.
+     */
+    public void handleFavoriteButton() {
         favoriteButton.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
@@ -154,8 +203,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             editor.putStringSet("FavoriteItems", favoriteSet);
             editor.apply();
         });
-
-        // Update favorite button text based on current state
+        // Update favorite button text based on current state.
         SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
         Set<String> favoriteSet = prefs.getStringSet("FavoriteItems", new HashSet<>());
         if (favoriteSet.contains(String.valueOf(item.getId()))) {

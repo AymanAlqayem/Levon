@@ -108,7 +108,7 @@ public class JewelryActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.category_title);
         title.setText("Jewelry");
 
-        // Load items from ItemManager and filter for Jewelry
+        // Load items from ItemManager and filter for Jewelry.
         ArrayList<Item> jewelryItems = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
             // Jewelry items have IDs 16, 17, 18
@@ -142,7 +142,7 @@ public class JewelryActivity extends AppCompatActivity {
                 textView.setTextColor(Color.WHITE);
                 textView.setTypeface(null, Typeface.BOLD);
 
-                // Set padding (optional)
+                // Set padding.
                 int padding = (int) (16 * getResources().getDisplayMetrics().density); // 16dp to pixels
                 textView.setPadding(padding, padding, padding, padding);
 

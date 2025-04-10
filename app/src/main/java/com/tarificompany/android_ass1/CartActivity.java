@@ -85,6 +85,9 @@ public class CartActivity extends AppCompatActivity {
         totalPriceView.setText(String.format("Total: $%.2f", totalPrice));
     }
 
+    /**
+     * removeItem method that will remove a specific item from cart.
+     */
     private void removeItem(int position) {
         cartItems.remove(position);
         saveCart();
@@ -92,6 +95,9 @@ public class CartActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * saveCart method that will save cart info into cart shared preferences.
+     */
     private void saveCart() {
         SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();

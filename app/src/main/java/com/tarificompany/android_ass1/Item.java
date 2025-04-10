@@ -61,6 +61,7 @@ public class Item {
 
     public JSONObject toJson() throws JSONException {
         JSONObject json = new JSONObject();
+
         json.put("id", id);
         json.put("name", name);
         json.put("description", description);
@@ -68,6 +69,7 @@ public class Item {
         json.put("price", price);
         json.put("stock", stock);
         json.put("category", category);
+
         return json;
     }
 

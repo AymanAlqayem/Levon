@@ -2,11 +2,9 @@ package com.tarificompany.android_ass1;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class ItemManager {
@@ -14,6 +12,9 @@ public class ItemManager {
     private static final String KEY_ALL_ITEMS = "AllItems";
     private static ArrayList<Item> allItems;
 
+    /**
+     * initializeItems method that will initialize the items for each category.
+     */
     public static void initializeItems(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String itemsJson = prefs.getString(KEY_ALL_ITEMS, null);
@@ -30,6 +31,9 @@ public class ItemManager {
         }
     }
 
+    /**
+     * loadItems method that will load categories items from shared preferences.
+     */
     private static void loadItems(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String itemsJson = prefs.getString(KEY_ALL_ITEMS, "[]");
@@ -46,6 +50,9 @@ public class ItemManager {
         }
     }
 
+    /**
+     * saveItems method that will save items into shared preferences.
+     */
     public static void saveItems(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         JSONArray jsonArray = new JSONArray();
@@ -57,10 +64,12 @@ public class ItemManager {
             editor.putString(KEY_ALL_ITEMS, jsonArray.toString());
             editor.apply();
         } catch (JSONException e) {
-            android.util.Log.e("ItemManager", "Error saving items", e);
         }
     }
 
+    /**
+     * getAllItems method that will get all categories items.
+     */
     public static ArrayList<Item> getAllItems(Context context) {
         if (allItems == null) {
             initializeItems(context);
