@@ -8,11 +8,13 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
@@ -29,41 +31,26 @@ public class MainActivity extends AppCompatActivity {
         // Initialize ItemManager
         ItemManager.initializeItems(this);
 
+        // Set up the ListView for categories
         ListView categoryList = findViewById(R.id.category_list);
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, CATEGORIES) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                // Create or reuse the view
                 View view = super.getView(position, convertView, parent);
-
-                // Find the TextView from the existing layout
-                TextView textView = (TextView) view.findViewById(android.R.id.text1);
-
-                // Set the text for the category
+                TextView textView = view.findViewById(android.R.id.text1);
                 textView.setText(CATEGORIES[position]);
-
-                // Apply the background selector directly to the TextView
                 textView.setBackgroundResource(R.drawable.item_selector);
-
-                // Increase the text size (e.g., 20sp)
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-
-                // Apply text styling if necessary (optional)
                 textView.setTextColor(Color.WHITE);
                 textView.setTypeface(null, Typeface.BOLD);
-
-                // Increase padding (e.g., 20dp)
-                int padding = (int) (16 * getResources().getDisplayMetrics().density); // 16dp to pixels
+                int padding = (int) (16 * getResources().getDisplayMetrics().density);
                 textView.setPadding(padding, padding, padding, padding);
-
                 return view;
             }
         };
         categoryList.setAdapter(adapter);
 
-
-
+        // Handle ListView item clicks
         categoryList.setOnItemClickListener((parent, view, position, id) -> {
             String category = CATEGORIES[position];
             Intent intent;
@@ -77,5 +64,21 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // Set up the BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.nav_search) {
+                Toast.makeText(MainActivity.this, "Search clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (itemId == R.id.nav_favorite) {
+                Toast.makeText(MainActivity.this, "Favorite clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (itemId == R.id.nav_cart) {
+                Toast.makeText(MainActivity.this, "Cart clicked", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            return false;
+        });
     }
 }
