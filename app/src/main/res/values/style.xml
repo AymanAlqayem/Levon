@@ -8,6 +8,7 @@
         <item name="android:textColorHint">#FFFFFF</item>
         <item name="android:editTextStyle">@style/CustomEditText</item>
         <item name="android:textViewStyle">@style/CustomTextView</item>
+        <item name="android:listViewStyle">@style/CustomListView</item>
     </style>
 
     <!-- EditText Custom Style -->
@@ -22,5 +23,13 @@
     <style name="CustomTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:fontFamily">serif</item>
+    </style>
+
+    <!-- Custom ListView Style -->
+    <style name="CustomListView" parent="Widget.AppCompat.ListView">
+        <item name="android:divider">#FFFFFF</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:background">#1A1A1D</item>
+        <item name="android:listSelector">?android:attr/activatedBackgroundIndicator</item>
     </style>
 </resources>
