@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <!-- Base App Theme -->
     <style name="AymanTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Global attributes -->
@@ -10,9 +11,21 @@
         <item name="android:textViewStyle">@style/CustomTextView</item>
         <item name="android:listViewStyle">@style/CustomListView</item>
         <item name="buttonStyle">@style/CreativeButton</item>
+        <item name="spinnerStyle">@style/CustomSpinner</item>
+        <item name="checkboxStyle">@style/CustomCheckBox</item>
+        <item name="radioButtonStyle">@style/CustomRadioButton</item>
+
+        <!-- Spinner popup dropdown theme -->
+        <item name="android:popupTheme">@style/SpinnerPopupDark</item>
     </style>
 
-    <!-- EditText Custom Style -->
+    <!-- Spinner Popup Dropdown Theme -->
+    <style name="SpinnerPopupDark" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:popupBackground">#1A1A1D</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <!-- Custom EditText -->
     <style name="CustomEditText" parent="Widget.AppCompat.EditText">
         <item name="android:textColorHint">#FFFFFF</item>
         <item name="android:fontFamily">serif</item>
@@ -20,13 +33,13 @@
         <item name="android:textColor">#FFFFFF</item>
     </style>
 
-    <!-- Custom TextView Style -->
+    <!-- Custom TextView -->
     <style name="CustomTextView" parent="Widget.AppCompat.TextView">
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:fontFamily">serif</item>
     </style>
 
-    <!-- Custom ListView Style -->
+    <!-- Custom ListView -->
     <style name="CustomListView" parent="Widget.AppCompat.ListView">
         <item name="android:divider">#FFFFFF</item>
         <item name="android:dividerHeight">1dp</item>
@@ -34,17 +47,42 @@
         <item name="android:listSelector">?android:attr/activatedBackgroundIndicator</item>
     </style>
 
+    <!-- Custom Button -->
     <style name="CreativeButton" parent="Widget.AppCompat.Button">
         <item name="android:background">@drawable/button_background</item>
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:fontFamily">serif</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">18sp</item>
-        <item name="android:paddingLeft">24dp</item>
-        <item name="android:paddingRight">24dp</item>
-        <item name="android:paddingTop">12dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:elevation">4dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:paddingBottom">9dp</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+
+    <!-- Custom Spinner -->
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner">
+        <item name="android:backgroundTint">#FFFFFF</item>
+        <item name="android:popupBackground">#1A1A1D</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textColor">#FFFFFF</item> <!-- Only affects selected item -->
+        <item name="android:fontFamily">serif</item>
+    </style>
+
+
+    <!-- Custom CheckBox -->
+    <style name="CustomCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:buttonTint">#FFFFFF</item>
+    </style>
+
+    <!-- Custom RadioButton -->
+    <style name="CustomRadioButton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:buttonTint">#FFFFFF</item>
     </style>
 
 </resources>

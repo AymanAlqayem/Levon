@@ -60,7 +60,7 @@
         android:layout_marginEnd="110dp"
         android:layout_marginBottom="140dp"
         android:onClick="btnSignUpOnClick"
-        android:text="sign up"
+        android:text="Signup"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/txtHaveAccount"
         app:layout_constraintEnd_toEndOf="@+id/txtHaveAccount"

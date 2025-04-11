@@ -30,7 +30,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         // Initialize ItemManager.
-        ItemManager.initializeItems(this);
+        ItemManager.setUpItems(this);
 
         // Setup the categories list,
         ListView categoryList = setUpCategories();
@@ -97,13 +97,13 @@ public class HomePageActivity extends AppCompatActivity {
             Intent intent;
             if (itemId == R.id.nav_search) {
                 // Navigate to the SearchActivity
-//                intent = new Intent(HomePageActivity.this, SearchActivity.class);
-//                startActivity(intent);
+                intent = new Intent(HomePageActivity.this, SearchActivity.class);
+                startActivity(intent);
                 return true;
             } else if (itemId == R.id.nav_favorite) {
                 // Navigate to the FavoritesActivity
-//                intent = new Intent(HomePageActivity.this, FavoritesActivity.class);
-//                startActivity(intent);
+                intent = new Intent(HomePageActivity.this, FavoritesActivity.class);
+                startActivity(intent);
                 return true;
             } else if (itemId == R.id.nav_cart) {
                 // Navigate to the CartActivity
