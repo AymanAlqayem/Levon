@@ -1,6 +1,7 @@
 package com.tarificompany.android_ass1;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -21,7 +22,8 @@ public class HomePageActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
             "Jewelry",
             "Ayman",
-            "Mohammad"
+            "Mohammad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
+            "12", "13", "14", "15", "16", "17", "20"
     };
 
     @Override

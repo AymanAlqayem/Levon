@@ -11,7 +11,7 @@ public class CartItem {
 
     public CartItem(Item item, int quantity) {
         this.item = item;
-        this.quantity = quantity;
+        this.quantity = Math.max(1, quantity); // Ensure quantity is at least 1
     }
 
     public Item getItem() {
@@ -23,10 +23,9 @@ public class CartItem {
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        this.quantity = Math.max(1, quantity); // Prevent negative or zero quantities
     }
 
-    // Convert to JSON for saving to SharedPreferences
     public JSONObject toJson() throws JSONException {
         JSONObject json = new JSONObject();
         json.put("item_id", item.getId());
@@ -34,7 +33,6 @@ public class CartItem {
         return json;
     }
 
-    // Create from JSON when loading from SharedPreferences
     public static CartItem fromJson(JSONObject json, Context context) throws JSONException {
         int itemId = json.getInt("item_id");
         int quantity = json.getInt("quantity");

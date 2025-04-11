@@ -30,7 +30,6 @@ public class CartActivity extends AppCompatActivity {
     private ListView cartListView;
     private TextView totalPriceView;
     private Button checkoutButton;
-
     private ArrayList<CartItem> cartItems;
     private ArrayList<String> displayItems;
     private ArrayAdapter<CartItem> adapter;
@@ -53,26 +52,18 @@ public class CartActivity extends AppCompatActivity {
         setUpListeners();
     }
 
-    /**
-     * setUpViews method that will initialize the UI components.
-     */
     private void setUpViews() {
         cartListView = findViewById(R.id.cart_list);
         totalPriceView = findViewById(R.id.total_price);
         checkoutButton = findViewById(R.id.checkout_button);
+
     }
 
-    /**
-     * setUpSharedPref method that will initialize the shared preferences objects.
-     */
     private void setUpSharedPref() {
         pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         editor = pref.edit();
     }
 
-    /**
-     * setUpCartItems method that will load cart items from shared preferences.
-     */
     private void setUpCartItems() {
         cartItems = new ArrayList<>();
         displayItems = new ArrayList<>();
@@ -82,22 +73,23 @@ public class CartActivity extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(cartJson);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonItem = jsonArray.getJSONObject(i);
-                cartItems.add(CartItem.fromJson(jsonItem, this));
+                CartItem cartItem = CartItem.fromJson(jsonItem, this);
+                if (cartItem.getQuantity() <= 0) {
+                    continue;
+                }
+                cartItems.add(cartItem);
             }
+            saveCart();
         } catch (JSONException e) {
             Toast.makeText(this, "Error loading cart", Toast.LENGTH_SHORT).show();
-            editor.putString(KEY_CART_ITEMS, "[]"); // Reset to empty array
+            editor.putString(KEY_CART_ITEMS, "[]");
             editor.commit();
         }
 
         updateCartDisplay();
     }
 
-    /**
-     * setUpListView method that will initialize the ListView and its adapter.
-     */
     private void setUpListView() {
-        // Define the adapter inline using an anonymous class
         adapter = new ArrayAdapter<CartItem>(this, 0, cartItems) {
             @NonNull
             @Override
@@ -112,7 +104,8 @@ public class CartActivity extends AppCompatActivity {
                 double itemTotal = item.getPrice() * quantity;
 
                 TextView itemText = convertView.findViewById(R.id.cart_item_text);
-                itemText.setText(String.format("%s - $%.2f x %d = $%.2f", item.getName(), item.getPrice(), quantity, itemTotal));
+                itemText.setText(String.format("%s - $%.2f x %d = $%.2f (Stock: %d)",
+                        item.getName(), item.getPrice(), quantity, itemTotal, item.getStock()));
 
                 ImageButton minusButton = convertView.findViewById(R.id.minus_button);
                 minusButton.setOnClickListener(v -> {
@@ -136,14 +129,16 @@ public class CartActivity extends AppCompatActivity {
 
                 ImageButton plusButton = convertView.findViewById(R.id.plus_button);
                 plusButton.setOnClickListener(v -> {
-                    if (quantity + 1 <= item.getStock()) {
-                        cartItem.setQuantity(quantity + 1);
-                        saveCart();
-                        updateCartDisplay();
-                        notifyDataSetChanged();
-                    } else {
+                    int currentStock = item.getStock();
+                    int totalQuantityInCart = cartItem.getQuantity() + 1;
+                    if (totalQuantityInCart > currentStock) {
                         Toast.makeText(CartActivity.this, "Not enough stock available", Toast.LENGTH_SHORT).show();
+                        return;
                     }
+                    cartItem.setQuantity(totalQuantityInCart);
+                    saveCart();
+                    updateCartDisplay();
+                    notifyDataSetChanged();
                 });
 
                 ImageView deleteIcon = convertView.findViewById(R.id.delete_icon);
@@ -165,16 +160,10 @@ public class CartActivity extends AppCompatActivity {
         cartListView.setAdapter(adapter);
     }
 
-    /**
-     * setUpListeners method that will set up click listeners for UI elements.
-     */
     private void setUpListeners() {
         checkoutButton.setOnClickListener(v -> handleCheckoutClick());
     }
 
-    /**
-     * handleCheckoutClick method that will handle the checkout button click event.
-     */
     private void handleCheckoutClick() {
         if (cartItems.isEmpty()) {
             Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
@@ -183,9 +172,6 @@ public class CartActivity extends AppCompatActivity {
         showCheckoutStep1();
     }
 
-    /**
-     * updateCartDisplay method that will update the cart display and total price.
-     */
     private void updateCartDisplay() {
         displayItems.clear();
         double totalPrice = 0.0;
@@ -199,9 +185,6 @@ public class CartActivity extends AppCompatActivity {
         totalPriceView.setText(String.format("Total: $%.2f", totalPrice));
     }
 
-    /**
-     * removeItem method that will remove a specific item from cart.
-     */
     private void removeItem(int position) {
         cartItems.remove(position);
         saveCart();
@@ -209,9 +192,6 @@ public class CartActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    /**
-     * saveCart method that will save cart info into cart shared preferences.
-     */
     private void saveCart() {
         JSONArray jsonArray = new JSONArray();
         try {
@@ -221,16 +201,12 @@ public class CartActivity extends AppCompatActivity {
             editor.putString(KEY_CART_ITEMS, jsonArray.toString());
             editor.commit();
         } catch (JSONException e) {
-            editor.putString(KEY_CART_ITEMS, "[]"); // Reset to empty array
+            editor.putString(KEY_CART_ITEMS, "[]");
             editor.commit();
             Toast.makeText(this, "Error saving cart", Toast.LENGTH_SHORT).show();
         }
     }
 
-    /**
-     * Displays the first step of the checkout process, showing a summary of cart items
-     * and the total price in a dialog with white text color.
-     */
     private void showCheckoutStep1() {
         StringBuilder summary = new StringBuilder("Please review your cart:\n\n");
         double totalPrice = 0.0;
@@ -243,24 +219,19 @@ public class CartActivity extends AppCompatActivity {
         }
         summary.append(String.format("\nTotal: $%.2f", totalPrice));
 
-        // Create a TextView to customize the message text color
         TextView messageTextView = new TextView(this);
         messageTextView.setText(summary.toString());
-        messageTextView.setTextColor(Color.WHITE); // Set text color to white
+        messageTextView.setTextColor(Color.WHITE);
         messageTextView.setPadding(16, 16, 16, 16);
 
         new AlertDialog.Builder(this)
                 .setTitle("Step 1: Review Cart")
-                .setView(messageTextView) // Use custom TextView instead of setMessage
+                .setView(messageTextView)
                 .setPositiveButton("Proceed", (dialog, which) -> showShippingStep())
                 .setNegativeButton("Cancel", null)
                 .show();
     }
 
-    /**
-     * Displays the second step of the checkout process, prompting the user to enter
-     * their shipping address in a dialog.
-     */
     private void showShippingStep() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Step 2: Shipping Details");
@@ -288,43 +259,48 @@ public class CartActivity extends AppCompatActivity {
         builder.show();
     }
 
-    /**
-     * Displays the final step of the checkout process, asking the user to confirm
-     * the purchase in a dialog with white text color.
-     */
     private void showCheckoutStep2() {
-        // Create a TextView to customize the message text color
         TextView messageTextView = new TextView(this);
         messageTextView.setText("Are you sure you want to complete the purchase?\n\nThis will update the stock and clear your cart.");
-        messageTextView.setTextColor(Color.WHITE); // Set text color to white
+        messageTextView.setTextColor(Color.WHITE);
         messageTextView.setPadding(16, 16, 16, 16);
 
         new AlertDialog.Builder(this)
                 .setTitle("Step 3: Confirm Checkout")
-                .setView(messageTextView) // Use custom TextView instead of setMessage
+                .setView(messageTextView)
                 .setPositiveButton("Confirm", (dialog, which) -> finalizeCheckout())
                 .setNegativeButton("Cancel", null)
                 .show();
     }
 
-    /**
-     * finalizeCheckout method that will complete the checkout process by updating stock and clearing the cart.
-     */
     private void finalizeCheckout() {
+        // Verify stock availability before finalizing
         for (CartItem cartItem : cartItems) {
             Item item = cartItem.getItem();
             int quantity = cartItem.getQuantity();
-            item.setStock(item.getStock() - quantity);
+            int currentStock = item.getStock();
+            if (quantity > currentStock) {
+                Toast.makeText(this, "Not enough stock for " + item.getName(), Toast.LENGTH_SHORT).show();
+                return;
+            }
         }
 
-        // Save the updated items to SharedPreferences using the correct method name
+        // Update stock
+        for (CartItem cartItem : cartItems) {
+            Item item = cartItem.getItem();
+            int quantity = cartItem.getQuantity();
+            int newStock = item.getStock() - quantity;
+            if (newStock < 0) {
+                newStock = 0; // Prevent negative stock
+            }
+            item.setStock(newStock);
+        }
+
         ItemManager.saveItemsToSharedPref();
 
-        // Clear the cart in SharedPreferences
         editor.putString(KEY_CART_ITEMS, "[]");
         editor.commit();
 
-        // Clear the local cart data and update the UI
         cartItems.clear();
         displayItems.clear();
         adapter.notifyDataSetChanged();

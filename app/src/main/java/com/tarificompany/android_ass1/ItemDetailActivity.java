@@ -40,21 +40,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item_detail);
 
         setUpViews();
-
         initializeItem();
-
         handlePlusMinusButtons();
-
         handleCartButton();
-
         handleFavoriteButton();
     }
 
-    /**
-     * setUpViews method that will initialize the hooks.
-     */
     public void setUpViews() {
-        // Initialize views
         itemImageView = findViewById(R.id.item_image);
         itemNameView = findViewById(R.id.item_name);
         itemDescView = findViewById(R.id.item_description);
@@ -65,14 +57,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         plusButton = findViewById(R.id.plus_button);
         addToCartButton = findViewById(R.id.add_to_cart_button);
         favoriteButton = findViewById(R.id.favorite_button);
-
     }
 
-    /**
-     * initializeItem method that will set the item details;
-     */
     public void initializeItem() {
-        // Get item details from intent.
         Intent intent = getIntent();
 
         int itemId = intent.getIntExtra("item_id", -1);
@@ -81,7 +68,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         int itemImage = intent.getIntExtra("item_image", 0);
         double itemPrice = intent.getDoubleExtra("item_price", 0.0);
 
-        // Find the item in ItemManager to get the stock.
         item = null;
         for (Item i : ItemManager.getAllItems(this)) {
             if (i.getId() == itemId) {
@@ -95,7 +81,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             finish();
             return;
         }
-        // Set item details
+
         itemImageView.setImageResource(itemImage);
         itemNameView.setText(itemName);
         itemDescView.setText(itemDesc);
@@ -104,11 +90,7 @@ public class ItemDetailActivity extends AppCompatActivity {
         quantityText.setText(String.valueOf(quantity));
     }
 
-    /**
-     * handlePlusMinusButtons method that will handle both Plus and Minus buttons.
-     */
     public void handlePlusMinusButtons() {
-        // Handle minus button
         minusButton.setOnClickListener(v -> {
             if (quantity > 1) {
                 quantity--;
@@ -116,7 +98,6 @@ public class ItemDetailActivity extends AppCompatActivity {
             }
         });
 
-        // Handle plus button
         plusButton.setOnClickListener(v -> {
             if (quantity < item.getStock()) {
                 quantity++;
@@ -125,16 +106,24 @@ public class ItemDetailActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cannot exceed available stock", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
-    /**
-     * handleCartButton method that will handle the add to cart button.
-     */
     public void handleCartButton() {
-        // Add to cart
         addToCartButton.setOnClickListener(v -> {
+            // Validate quantity
+            if (quantity <= 0) {
+                Toast.makeText(this, "Please select a quantity greater than 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Check if adding this quantity would exceed the available stock
+            int currentStock = item.getStock();
+            int totalQuantityInCart = getTotalQuantityInCart(item.getId()) + quantity;
+            if (totalQuantityInCart > currentStock) {
+                Toast.makeText(this, "Not enough stock available", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
             SharedPreferences.Editor editor = prefs.edit();
             String cartJson = prefs.getString("CartItems", "[]");
@@ -144,7 +133,11 @@ public class ItemDetailActivity extends AppCompatActivity {
                 JSONArray jsonArray = new JSONArray(cartJson);
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonItem = jsonArray.getJSONObject(i);
-                    cartItems.add(CartItem.fromJson(jsonItem, ItemDetailActivity.this));
+                    CartItem cartItem = CartItem.fromJson(jsonItem, ItemDetailActivity.this);
+                    if (cartItem.getQuantity() <= 0) {
+                        continue; // Skip invalid items
+                    }
+                    cartItems.add(cartItem);
                 }
 
                 boolean itemExists = false;
@@ -165,6 +158,7 @@ public class ItemDetailActivity extends AppCompatActivity {
                     cartItems.add(new CartItem(item, quantity));
                 }
 
+                // Save the updated cart
                 JSONArray updatedArray = new JSONArray();
                 for (CartItem cartItem : cartItems) {
                     updatedArray.put(cartItem.toJson());
@@ -172,9 +166,8 @@ public class ItemDetailActivity extends AppCompatActivity {
                 editor.putString("CartItems", updatedArray.toString());
                 editor.apply();
 
-                // Change the button text and disable it
                 addToCartButton.setText("Added to Cart");
-                addToCartButton.setEnabled(false); // Optional, to disable the button after adding
+                addToCartButton.setEnabled(false);
 
                 Toast.makeText(this, item.getName() + " added to cart", Toast.LENGTH_SHORT).show();
             } catch (JSONException e) {
@@ -184,9 +177,30 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * handleFavoriteButton method that will handle the favorite button.
-     */
+    // Helper method to get the total quantity of an item already in the cart
+    private int getTotalQuantityInCart(int itemId) {
+        SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
+        String cartJson = prefs.getString("CartItems", "[]");
+        ArrayList<CartItem> cartItems = new ArrayList<>();
+
+        try {
+            JSONArray jsonArray = new JSONArray(cartJson);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonItem = jsonArray.getJSONObject(i);
+                cartItems.add(CartItem.fromJson(jsonItem, ItemDetailActivity.this));
+            }
+
+            for (CartItem cartItem : cartItems) {
+                if (cartItem.getItem().getId() == itemId) {
+                    return cartItem.getQuantity();
+                }
+            }
+        } catch (JSONException e) {
+            android.util.Log.e("ItemDetailActivity", "Error checking cart items", e);
+        }
+        return 0;
+    }
+
     public void handleFavoriteButton() {
         favoriteButton.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
@@ -206,7 +220,7 @@ public class ItemDetailActivity extends AppCompatActivity {
             editor.putStringSet("FavoriteItems", favoriteSet);
             editor.apply();
         });
-        // Update favorite button text based on current state.
+
         SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
         Set<String> favoriteSet = prefs.getStringSet("FavoriteItems", new HashSet<>());
         if (favoriteSet.contains(String.valueOf(item.getId()))) {
@@ -220,6 +234,10 @@ public class ItemDetailActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkIfItemInCart();
+        // Refresh stock display
+        if (item != null) {
+            stockMessageView.setText("In stock: " + item.getStock());
+        }
     }
 
     private void checkIfItemInCart() {
@@ -234,21 +252,18 @@ public class ItemDetailActivity extends AppCompatActivity {
                 cartItems.add(CartItem.fromJson(jsonItem, ItemDetailActivity.this));
             }
 
-            // Check if the item already exists in the cart
             for (CartItem cartItem : cartItems) {
                 if (cartItem.getItem().getId() == item.getId()) {
                     addToCartButton.setText("Added to Cart");
-                    addToCartButton.setEnabled(false); // Disable the button if the item is already in the cart
+                    addToCartButton.setEnabled(false);
                     break;
                 } else {
                     addToCartButton.setText("Add to Cart");
-                    addToCartButton.setEnabled(true); // Enable the button if the item is not in the cart
+                    addToCartButton.setEnabled(true);
                 }
             }
-
         } catch (JSONException e) {
             android.util.Log.e("ItemDetailActivity", "Error checking cart items", e);
         }
     }
-
 }

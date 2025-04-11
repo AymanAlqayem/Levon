@@ -1,15 +1,18 @@
 package com.tarificompany.android_ass1;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -20,6 +23,25 @@ public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Clear CartPrefs
+        SharedPreferences cartPrefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor cartEditor = cartPrefs.edit();
+        cartEditor.clear();
+        cartEditor.apply();
+
+        // Clear FavoritesPrefs
+        SharedPreferences favoritesPrefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor favoritesEditor = favoritesPrefs.edit();
+        favoritesEditor.clear();
+        favoritesEditor.apply();
+
+        // Clear ItemManager (default SharedPreferences)
+        SharedPreferences defaultPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor defaultEditor = defaultPrefs.edit();
+        defaultEditor.clear();
+        defaultEditor.apply();
+
+        Toast.makeText(this, "All preferences cleared", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
