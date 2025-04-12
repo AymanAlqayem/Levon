@@ -13,30 +13,38 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class JewelryActivity extends AppCompatActivity {
+public class WatchesActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category);
 
+        loadItems();
+    }
+
+    public void loadItems() {
         TextView title = findViewById(R.id.category_title);
-        title.setText("Jewelry");
+        title.setText("Watches");
 
         // Load items from ItemManager and filter for Jewelry.
-        ArrayList<Item> jewelryItems = new ArrayList<>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
-            // Jewelry items have IDs 16, 17, 18
-            if (item.getId() >= 16 && item.getId() <= 18) {
-                jewelryItems.add(item);
+            if (item.getId() >= 1 && item.getId() <= 24) {
+                itemArrayList.add(item);
             }
         }
 
         // Create a custom ArrayAdapter to display item details with image
-        ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this, R.layout.item_list_layout, jewelryItems) {
+        ArrayAdapter<Item> adapter = new ArrayAdapter<Item>(this, R.layout.item_list_layout, itemArrayList) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 // Inflate the custom layout if convertView is null
@@ -82,8 +90,8 @@ public class JewelryActivity extends AppCompatActivity {
 
         // Handle item clicks
         itemsList.setOnItemClickListener((parent, view, position, id) -> {
-            Item selectedItem = jewelryItems.get(position);
-            Intent intent = new Intent(JewelryActivity.this, ItemDetailActivity.class);
+            Item selectedItem = itemArrayList.get(position);
+            Intent intent = new Intent(WatchesActivity.this, ItemDetailActivity.class);
             intent.putExtra("item_id", selectedItem.getId());
             intent.putExtra("item_name", selectedItem.getName());
             intent.putExtra("item_desc", selectedItem.getDescription());

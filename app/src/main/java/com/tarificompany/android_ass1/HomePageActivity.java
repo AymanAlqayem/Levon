@@ -20,10 +20,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
-            "Jewelry",
-            "Ayman",
-            "Mohammad", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11",
-            "12", "13", "14", "15", "16", "17", "20"
+            "Watches",
+            "Gaming"
     };
 
     @Override
@@ -78,8 +76,11 @@ public class HomePageActivity extends AppCompatActivity {
             String category = CATEGORIES[position];
             Intent intent;
             switch (category) {
-                case "Jewelry":
-                    intent = new Intent(HomePageActivity.this, JewelryActivity.class);
+                case "Watches":
+                    intent = new Intent(HomePageActivity.this, WatchesActivity.class);
+                    break;
+                case "Gaming":
+                    intent = new Intent(HomePageActivity.this, GamingActivity.class);
                     break;
                 default:
                     return;
