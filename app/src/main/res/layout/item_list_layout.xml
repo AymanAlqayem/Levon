@@ -2,17 +2,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@drawable/item_selector"
     android:orientation="horizontal"
-    android:padding="16dp"
-    android:background="@drawable/item_selector">
+    android:padding="16dp">
 
     <!-- Image for the item -->
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        android:background="#00FF00" /> <!-- Placeholder background color (green as in the image) -->
+        android:background="#00FF00"
+        android:scaleType="centerCrop" /> <!-- Placeholder background color -->
 
     <!-- Vertical layout for text details -->
     <LinearLayout

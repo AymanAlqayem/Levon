@@ -2,6 +2,7 @@ package com.tarificompany.android_ass1;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ import java.util.Set;
 
 public class FavoritesActivity extends AppCompatActivity {
     private ArrayList<Item> favoriteItems;
-    private CustomFavoritesAdapter adapter;
+    private ArrayAdapter<Item> adapter;
     private ListView favoritesListView;
     private TextView emptyMessage;
 
@@ -38,7 +39,39 @@ public class FavoritesActivity extends AppCompatActivity {
         favoriteItems = new ArrayList<>();
         loadFavorites();
 
-        adapter = new CustomFavoritesAdapter(this, favoriteItems);
+        // Create anonymous ArrayAdapter
+        adapter = new ArrayAdapter<Item>(this, 0, favoriteItems) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(FavoritesActivity.this).inflate(R.layout.favorite_item_layout, parent, false);
+                }
+
+                Item item = getItem(position);
+
+                TextView itemText = convertView.findViewById(R.id.cart_item_text);
+                itemText.setText(String.format("%s - $%.2f (%d in stock)", item.getName(), item.getPrice(), item.getStock()));
+
+                ImageView deleteIcon = convertView.findViewById(R.id.delete_icon);
+                deleteIcon.setOnClickListener(v -> {
+                    // Create custom TextView for dialog message
+                    TextView messageTextView = new TextView(FavoritesActivity.this);
+                    messageTextView.setText("Are you sure you want to remove " + item.getName() + " from your favorites?");
+                    messageTextView.setTextColor(Color.WHITE);
+                    messageTextView.setPadding(32, 32, 32, 32);
+                    messageTextView.setTextSize(16);
+
+                    new AlertDialog.Builder(FavoritesActivity.this)
+                            .setTitle("Remove from Favorites")
+                            .setView(messageTextView) // Use custom TextView instead of setMessage
+                            .setPositiveButton("Yes", (dialog, which) -> removeItem(position))
+                            .setNegativeButton("No", null)
+                            .show();
+                });
+
+                return convertView;
+            }
+        };
         favoritesListView.setAdapter(adapter);
 
         // Handle item clicks to go to ItemDetailActivity
@@ -54,6 +87,9 @@ public class FavoritesActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * loadFavorites method that will load fav items.
+     */
     private void loadFavorites() {
         SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
         Set<String> favoriteSet = prefs.getStringSet("FavoriteItems", new HashSet<>());
@@ -83,6 +119,9 @@ public class FavoritesActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * saveFavorites method that will save fav items.
+     */
     private void saveFavorites() {
         SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
@@ -94,42 +133,15 @@ public class FavoritesActivity extends AppCompatActivity {
         editor.apply();
     }
 
+    /**
+     * removeItem method that will remove a specific item form fav list.
+     */
     private void removeItem(int position) {
         Item removedItem = favoriteItems.get(position);
         favoriteItems.remove(position);
         saveFavorites();
         adapter.notifyDataSetChanged();
         Toast.makeText(this, removedItem.getName() + " removed from favorites", Toast.LENGTH_SHORT).show();
-    }
-
-    private class CustomFavoritesAdapter extends ArrayAdapter<Item> {
-        public CustomFavoritesAdapter(FavoritesActivity context, ArrayList<Item> items) {
-            super(context, 0, items);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.favorite_item_layout, parent, false);
-            }
-
-            Item item = getItem(position);
-
-            TextView itemText = convertView.findViewById(R.id.cart_item_text);
-            itemText.setText(String.format("%s - $%.2f (%d in stock)", item.getName(), item.getPrice(), item.getStock()));
-
-            ImageView deleteIcon = convertView.findViewById(R.id.delete_icon);
-            deleteIcon.setOnClickListener(v -> {
-                new AlertDialog.Builder(FavoritesActivity.this)
-                        .setTitle("Remove from Favorites")
-                        .setMessage("Are you sure you want to remove " + item.getName() + " from your favorites?")
-                        .setPositiveButton("Yes", (dialog, which) -> removeItem(position))
-                        .setNegativeButton("No", null)
-                        .show();
-            });
-
-            return convertView;
-        }
     }
 
     @Override

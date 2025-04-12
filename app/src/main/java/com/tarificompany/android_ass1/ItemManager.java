@@ -15,6 +15,7 @@ public class ItemManager {
 
     /**
      * setUpSharedPref method that will initialize the shared preferences objects.
+     *
      * @param context The context required to access SharedPreferences.
      */
     public static void setUpSharedPref(Context context) {
@@ -24,6 +25,7 @@ public class ItemManager {
 
     /**
      * setUpItems method that will initialize the items for each category.
+     *
      * @param context The context required to access SharedPreferences.
      */
     public static void setUpItems(Context context) {
@@ -87,6 +89,7 @@ public class ItemManager {
 
     /**
      * getAllItems method that will get all categories items.
+     *
      * @param context The context required to access SharedPreferences.
      */
     public static ArrayList<Item> getAllItems(Context context) {

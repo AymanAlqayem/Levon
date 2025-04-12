@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class CartActivity extends AppCompatActivity {
     private ListView cartListView;
     private TextView totalPriceView;
+    private TextView emptyCartMessage;
     private Button checkoutButton;
     private ArrayList<CartItem> cartItems;
     private ArrayList<String> displayItems;
@@ -52,18 +53,27 @@ public class CartActivity extends AppCompatActivity {
         setUpListeners();
     }
 
+    /**
+     * setUpViews method that will initialize the views..
+     */
     private void setUpViews() {
         cartListView = findViewById(R.id.cart_list);
         totalPriceView = findViewById(R.id.total_price);
+        emptyCartMessage = findViewById(R.id.empty_cart_message); // Initialize the TextView
         checkoutButton = findViewById(R.id.checkout_button);
-
     }
 
+    /**
+     * setUpSharedPref method that setup the shared preferences.
+     */
     private void setUpSharedPref() {
         pref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         editor = pref.edit();
     }
 
+    /**
+     * setUpCartItems method that will initialize the cart items.
+     */
     private void setUpCartItems() {
         cartItems = new ArrayList<>();
         displayItems = new ArrayList<>();
@@ -85,10 +95,12 @@ public class CartActivity extends AppCompatActivity {
             editor.putString(KEY_CART_ITEMS, "[]");
             editor.commit();
         }
-
         updateCartDisplay();
     }
 
+    /**
+     * setUpListView method that will initialize the cart items list view.
+     */
     private void setUpListView() {
         adapter = new ArrayAdapter<CartItem>(this, 0, cartItems) {
             @NonNull
@@ -143,9 +155,15 @@ public class CartActivity extends AppCompatActivity {
 
                 ImageView deleteIcon = convertView.findViewById(R.id.delete_icon);
                 deleteIcon.setOnClickListener(v -> {
+                    TextView messageTextView = new TextView(CartActivity.this);
+                    messageTextView.setText("Are you sure you want to remove " + item.getName() + " from the cart?");
+                    messageTextView.setTextColor(Color.WHITE);
+                    messageTextView.setPadding(32, 32, 32, 32);
+                    messageTextView.setTextSize(16);
+
                     new AlertDialog.Builder(CartActivity.this)
                             .setTitle("Remove Item")
-                            .setMessage("Are you sure you want to remove " + item.getName() + " from the cart?")
+                            .setView(messageTextView)
                             .setPositiveButton("Yes", (dialog, which) -> {
                                 removeItem(position);
                                 Toast.makeText(CartActivity.this, "Item removed", Toast.LENGTH_SHORT).show();
@@ -164,6 +182,9 @@ public class CartActivity extends AppCompatActivity {
         checkoutButton.setOnClickListener(v -> handleCheckoutClick());
     }
 
+    /**
+     * handleCheckoutClick method that will handle the checkout button.
+     */
     private void handleCheckoutClick() {
         if (cartItems.isEmpty()) {
             Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
@@ -172,6 +193,9 @@ public class CartActivity extends AppCompatActivity {
         showCheckoutStep1();
     }
 
+    /**
+     * updateCartDisplay method that wil update the cart view.
+     */
     private void updateCartDisplay() {
         displayItems.clear();
         double totalPrice = 0.0;
@@ -183,8 +207,24 @@ public class CartActivity extends AppCompatActivity {
             totalPrice += itemTotal;
         }
         totalPriceView.setText(String.format("Total: $%.2f", totalPrice));
+
+        // Toggle visibility of empty cart message, cart list, total price, and checkout button
+        if (cartItems.isEmpty()) {
+            emptyCartMessage.setVisibility(View.VISIBLE);
+            cartListView.setVisibility(View.GONE);
+            totalPriceView.setVisibility(View.GONE); // Hide total price when cart is empty
+            checkoutButton.setVisibility(View.GONE); // Hide checkout button when cart is empty
+        } else {
+            emptyCartMessage.setVisibility(View.GONE);
+            cartListView.setVisibility(View.VISIBLE);
+            totalPriceView.setVisibility(View.VISIBLE); // Show total price when cart has items
+            checkoutButton.setVisibility(View.VISIBLE); // Show checkout button when cart has items
+        }
     }
 
+    /**
+     * removeItem method that will remove a specific item from the cart.
+     */
     private void removeItem(int position) {
         cartItems.remove(position);
         saveCart();
@@ -192,6 +232,9 @@ public class CartActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * saveCart method that will save the cart items.
+     */
     private void saveCart() {
         JSONArray jsonArray = new JSONArray();
         try {
@@ -273,6 +316,9 @@ public class CartActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     * finalizeCheckout method that will finish the checkout process.
+     */
     private void finalizeCheckout() {
         // Verify stock availability before finalizing
         for (CartItem cartItem : cartItems) {

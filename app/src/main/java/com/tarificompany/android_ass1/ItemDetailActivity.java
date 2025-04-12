@@ -46,6 +46,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         handleFavoriteButton();
     }
 
+    /**
+     * setUpViews method that will initialize views.
+     */
     public void setUpViews() {
         itemImageView = findViewById(R.id.item_image);
         itemNameView = findViewById(R.id.item_name);
@@ -59,6 +62,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         favoriteButton = findViewById(R.id.favorite_button);
     }
 
+    /**
+     * initializeItem method that will initialize the info for a specific item.
+     */
     public void initializeItem() {
         Intent intent = getIntent();
 
@@ -90,6 +96,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         quantityText.setText(String.valueOf(quantity));
     }
 
+    /**
+     * handlePlusMinusButtons method that will handle plus, minus on click.
+     */
     public void handlePlusMinusButtons() {
         minusButton.setOnClickListener(v -> {
             if (quantity > 1) {
@@ -108,6 +117,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * handleCartButton method that will handle on click for cart button.
+     */
     public void handleCartButton() {
         addToCartButton.setOnClickListener(v -> {
             // Validate quantity
@@ -177,7 +189,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         });
     }
 
-    // Helper method to get the total quantity of an item already in the cart
+    /**
+     * getTotalQuantityInCart method that will get the total quantity of an item already in the cart
+     */
     private int getTotalQuantityInCart(int itemId) {
         SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         String cartJson = prefs.getString("CartItems", "[]");
@@ -201,6 +215,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         return 0;
     }
 
+    /**
+     * handleFavoriteButton method that will handle on click for fav button.
+     */
     public void handleFavoriteButton() {
         favoriteButton.setOnClickListener(v -> {
             SharedPreferences prefs = getSharedPreferences("FavoritesPrefs", MODE_PRIVATE);
@@ -240,6 +257,9 @@ public class ItemDetailActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * checkIfItemInCart method that will check if the item exist in the cart or Not.
+     */
     private void checkIfItemInCart() {
         SharedPreferences prefs = getSharedPreferences("CartPrefs", MODE_PRIVATE);
         String cartJson = prefs.getString("CartItems", "[]");
