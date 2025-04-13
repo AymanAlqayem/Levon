@@ -26,9 +26,27 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        setUpViews();
-
         setUpSharedPref();
+
+        // Check if user is already logged in
+        if (isLoggedIn()) {
+            Intent intent = new Intent(SignUpActivity.this, HomePageActivity.class);
+            startActivity(intent);
+            finish(); // Close SignUpActivity
+            return;
+        }
+
+        setUpViews();
+    }
+
+    /**
+     * Check if user is already logged in based on SharedPreferences
+     */
+    private boolean isLoggedIn() {
+        boolean flag = pref.getBoolean(LoginActivity.FLAG, false);
+        String storedName = pref.getString(LoginActivity.NAME, "");
+        String storedPass = pref.getString(LoginActivity.PASS, "");
+        return flag && !storedName.isEmpty() && !storedPass.isEmpty();
     }
 
     /**
