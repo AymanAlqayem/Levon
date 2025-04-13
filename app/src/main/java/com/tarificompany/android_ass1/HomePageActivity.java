@@ -21,7 +21,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class HomePageActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
             "Watches",
-            "Gaming"
+            "Gaming",
+            "fitness"
     };
 
     @Override
@@ -81,6 +82,9 @@ public class HomePageActivity extends AppCompatActivity {
                     break;
                 case "Gaming":
                     intent = new Intent(HomePageActivity.this, GamingActivity.class);
+                    break;
+                case "fitness":
+                    intent = new Intent(HomePageActivity.this, fitnessActivity.class);
                     break;
                 default:
                     return;

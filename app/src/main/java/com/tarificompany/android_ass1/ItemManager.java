@@ -42,8 +42,11 @@ public class ItemManager {
             //SetUp watches items.
             watchesItem();
 
-            //SetUp gaming items
+            //SetUp gaming items.
             gamingItems();
+
+            //Setup fitness items.
+            fitnessItems();
 
 
             saveItemsToSharedPref();
@@ -165,5 +168,30 @@ public class ItemManager {
         allItems.add(new Item(49, "STGAubron Gaming PC", " STGAubron Gaming PC Bundle with 24Inch FHD LED Monitor-Intel core I7 up to 3.9G, RX 580 8G, 16G, 512G SSD, RGB Mouse Pad, RGB Sound Bar, Windows 10 Home", R.drawable.g25, 750, 5, "Gaming"));
         allItems.add(new Item(50, "YEYIAN Tanto Prebuilt Gaming PC", " YEYIAN Tanto Prebuilt Gaming PC, Ryzen 7 5700X 4.6GHz, RTX 4060,16GB RGB Memory 1TB SSD, Desktop Computer VR & AI Ready, Win 11 Home Pre Built Tower PC Computers", R.drawable.g26, 1500, 4, "Gaming"));
         allItems.add(new Item(51, "iBUYPOWER Trace 7 Mesh Gaming PC ", " iBUYPOWER Trace 7 Mesh Gaming PC Computer Desktop TMA7N3501 (AMD Ryzen 7 5700, RTX 3050 6GB, 16GB DDR4 RGB 3200MHz (8x2), 1TB NVMe, WiFi Ready, Windows 11 Home Advanced)", R.drawable.g27, 1400, 6, "Gaming"));
+    }
+
+    /**
+     * fitnessItems method that will setUp the fitness items.
+     */
+    public static void fitnessItems() {
+        allItems.add(new Item(52, "FEIERDUN Adjustable Dumbbells", "FEIERDUN Adjustable Dumbbells, 20/30/40/45/70/90lbs Free Weight Set with Connector, 5 in1 Dumbbells Set Used as Barbell, Kettlebells, Push up Stand, Weight Plate, Fitness Exercises for Home Gym Suitable Men/Women", R.drawable.f1, 198, 100, "fitness"));
+        allItems.add(new Item(53, "Adjustable Dumbbells", "Adjustable Dumbbells Set 12.5LB/22.5LB Pair, 1-Sec Fast Adjustable 5 Weights by Turning Handle, Premium Comfort Non-slip Metal Dumbbells with Tray, Compact Size for Full Body Home Workout", R.drawable.f2, 130, 100, "fitness"));
+        allItems.add(new Item(54, "25/55 lbs Pair Adjustable Dumbbell Set", "25/55 lbs Pair Adjustable Dumbbell Set, Adjust Dumbbell Weight for Exercises Pair Dumbbells for Men and Women in Home", R.drawable.f3, 159, 100, "fitness"));
+        allItems.add(new Item(55, "Northdeer V2.0 Upgraded Adjustable Steel Dumbbells", "Northdeer V2.0 Upgraded Adjustable Steel Dumbbells 40LB / 60LB - 2 in 1 Dumbbell Barbell Set for Home Gym Workout - Compatible with V1.0 Dumbbells", R.drawable.f4, 177, 90, "fitness"));
+        allItems.add(new Item(56, "PHOEROS Adjustable Dumbbell Set", "PHOEROS Adjustable Dumbbell Set - 44/66/88 LBS weights set, Dumbbell Barbell 3 in 1, Steel Dumbbells Pair with Connecting Rod for Adults Women Men Fitness Workout, Home Gym Exercise Training Equipment", R.drawable.f5, 199, 120, "fitness"));
+        allItems.add(new Item(57, "Weighted Vest for Men Women", "Weighted Vest for Men Women 20lb/30lb/40lb/50lb/60lb Adjustable Weight Vest with Steel Plates Weights for Walking Strength Training Running Workout", R.drawable.f6, 160, 110, "fitness"));
+        allItems.add(new Item(58, "Wrist Arm Weights", "Wrist Arm Weights, Adjustable Wrist Weights, Removable Wrist Ankle Weights for Men Women, for Fitness, Walking, Jogging, Workout, Running, 1Pair 2 Pack", R.drawable.f7, 89, 60, "fitness"));
+        allItems.add(new Item(59, "Wrist & Ankle Weights", "Wrist & Ankle Weights set of 2 (1lb each), Adjustable Silicone Weighted Bangles for Men and Women, Suitable for Arm & Leg Workout, Yoga, Pilates, Dance, Barre, Gym, Aerobics.", R.drawable.f8, 30, 60, "fitness"));
+        allItems.add(new Item(60, "HOTWAVE Weighted Vest", "HOTWAVE Weighted Vest, 2-18 lbs Weighted Vest with Ankle Weights Woman Men Adjustable - Weight Vest with Reflective for Men Women, Body Light Walk Weight Vest for Running Walking Workout Fitness", R.drawable.f9, 99, 50, "fitness"));
+        allItems.add(new Item(61, "Unbrokenshop.com Adjustable Weighted Vest", "Unbrokenshop.com Adjustable Weighted Vest, WOD Cross Fitness, Weight Plates Carrier for Strength and Endurance Training and Running. For Men or for Women, 2 Patches Included", R.drawable.f10, 120, 60, "fitness"));
+        allItems.add(new Item(62, "VINSGUIR Ab Roller Wheel", "VINSGUIR Ab Roller Wheel, Abs & Core Workout Equipment for Home Gym with Knee Pad Accessories, Abdominal Wheel for Full-body Strength Training", R.drawable.f11, 40, 30, "fitness"));
+        allItems.add(new Item(63, "Jump Rope", "Jump Rope, Tangle-Free Rapid Speed Jumping Rope Cable with Ball Bearings for Women, Men, and Kids, Adjustable Steel Jump Rope Workout with Foam Handles for Fitness, Home Exercise & Slim Body", R.drawable.f12, 9, 50, "fitness"));
+        allItems.add(new Item(64, "Redify Jump Rope", "Redify Jump Rope,Jump Ropes for Fitness for Women Men and Kids,Speed Jumping Rope for Workout with Ball Bearings,Adjustable Skipping Rope for Exercise&Slim Body at Home School Gym", R.drawable.f13, 17, 36, "fitness"));
+        allItems.add(new Item(65, "LAUS Ab Wheel Roller", "LAUS Ab Wheel Roller - with Knee Pad Mat, Automatic Rebound and Multiple Angles Core Workouts", R.drawable.f14, 33, 40, "fitness"));
+        allItems.add(new Item(66, "Ab Roller Wheel", "Ab Roller Wheel, 4d Ab Roller with Elbow Support and Knee Pad, Elbow Support Automatic Rebound Abdominal Wheel for Core Workout, Plank Exercise Wheel for Abdominal Core Strength Training", R.drawable.f15, 60, 19, "fitness"));
+        allItems.add(new Item(67, "YOSUDA Magnetic/Water Rowing Machine", "YOSUDA Magnetic/Water Rowing Machine 350 LB Weight Capacity - Foldable Rower for Home Use with Bluetooth, App Supported, Tablet Holder and Comfortable Seat Cushion", R.drawable.f16, 220, 36, "fitness"));
+        allItems.add(new Item(68, "YOSUDA Indoor Cycling Bike Brake", "YOSUDA Indoor Cycling Bike Brake Pad/Magnetic Stationary Bike - Cycle Bike with Tablet Mount & Comfortable Seat Cushion", R.drawable.f17, 260, 20, "fitness"));
+        allItems.add(new Item(69, "YOSUDA PRO Magnetic Exercise Bike", "YOSUDA PRO Magnetic Exercise Bike 350 lbs Weight Capacity - Indoor Cycling Bike Stationary with Comfortable Seat Cushion, Silent Belt Drive", R.drawable.f18, 360, 32, "fitness"));
+        allItems.add(new Item(70, "CURSOR FITNESS Recumbent Exercise Bike", "CURSOR FITNESS Recumbent Exercise Bike, Stationary Bikes for Home with Adjustable Seat, 16-Level Magnetic Resistance Recumbent Exercise Bike for Seniors", R.drawable.f19, 320, 32, "fitness"));
     }
 }

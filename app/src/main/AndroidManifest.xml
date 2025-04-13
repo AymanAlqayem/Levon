@@ -13,6 +13,9 @@
         android:theme="@style/AymanTheme"
         tools:targetApi="31">
         <activity
+            android:name=".fitnessActivity"
+            android:exported="false" />
+        <activity
             android:name=".GamingActivity"
             android:exported="false" />
         <activity
