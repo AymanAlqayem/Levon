@@ -22,7 +22,8 @@ public class HomePageActivity extends AppCompatActivity {
     private static final String[] CATEGORIES = {
             "Watches",
             "Gaming",
-            "fitness"
+            "Fitness",
+            "Perfume"
     };
 
     @Override
@@ -83,8 +84,11 @@ public class HomePageActivity extends AppCompatActivity {
                 case "Gaming":
                     intent = new Intent(HomePageActivity.this, GamingActivity.class);
                     break;
-                case "fitness":
+                case "Fitness":
                     intent = new Intent(HomePageActivity.this, fitnessActivity.class);
+                    break;
+                case "Perfume":
+                    intent = new Intent(HomePageActivity.this, PerfumeActivity.class);
                     break;
                 default:
                     return;

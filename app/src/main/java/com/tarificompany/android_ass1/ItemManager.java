@@ -48,6 +48,9 @@ public class ItemManager {
             //Setup fitness items.
             fitnessItems();
 
+            //SetUp perfumes items.
+            perfumeItems();
+
 
             saveItemsToSharedPref();
         } else {
@@ -193,5 +196,32 @@ public class ItemManager {
         allItems.add(new Item(68, "YOSUDA Indoor Cycling Bike Brake", "YOSUDA Indoor Cycling Bike Brake Pad/Magnetic Stationary Bike - Cycle Bike with Tablet Mount & Comfortable Seat Cushion", R.drawable.f17, 260, 20, "fitness"));
         allItems.add(new Item(69, "YOSUDA PRO Magnetic Exercise Bike", "YOSUDA PRO Magnetic Exercise Bike 350 lbs Weight Capacity - Indoor Cycling Bike Stationary with Comfortable Seat Cushion, Silent Belt Drive", R.drawable.f18, 360, 32, "fitness"));
         allItems.add(new Item(70, "CURSOR FITNESS Recumbent Exercise Bike", "CURSOR FITNESS Recumbent Exercise Bike, Stationary Bikes for Home with Adjustable Seat, 16-Level Magnetic Resistance Recumbent Exercise Bike for Seniors", R.drawable.f19, 320, 32, "fitness"));
+    }
+
+    /**
+     * perfumeItems method that will setUp the perfume items.
+     */
+    public static void perfumeItems() {
+        allItems.add(new Item(71, "Dior Christian", "Dior Christian Men's Fragrance Bundle Homme Intense Eau de Parfum 3.4oz and Sauvage Eau De Parfum 3.4oz Spray", R.drawable.p1, 350, 32, "Perfume"));
+        allItems.add(new Item(72, "Versace Eros", "Versace Eros for Men 6.7 oz Eau de Toilette Spray", R.drawable.p2, 220, 20, "Perfume"));
+        allItems.add(new Item(73, "Valentino Uomo", "Valentino Uomo Born In Roma for Men 3.4 oz Eau de Toilette Spray", R.drawable.p3, 220, 23, "Perfume"));
+        allItems.add(new Item(74, "Ralph Lauren", "Ralph Lauren - Polo Black - Eau de Toilette - Men's Cologne - Woody & Fresh - With Patchouli, Sandalwood, and Mandarin - Medium Intensity", R.drawable.p4, 180, 30, "Perfume"));
+        allItems.add(new Item(75, "Hollister Wave ", "Hollister Wave Men Eau De Toilette, 3.4 Ounce, Multi, 100 ml", R.drawable.p5, 190, 19, "Perfume"));
+        allItems.add(new Item(76, "Fahrenheit ", "Dior Christian Dior Fahrenheit Men's Shower Gel, 6.8 Ounce", R.drawable.p6, 160, 60, "Perfume"));
+        allItems.add(new Item(77, "Viktor&Rolf ", "Viktor&Rolf - Spicebomb Extreme Eau de Parfum - Woody & Spicy - Cologne for Men - With Notes of Amber & Vanilla - 3 Fl Oz", R.drawable.p7, 440, 20, "Perfume"));
+        allItems.add(new Item(78, "Viktor&Rolf", "Viktor&Rolf - Spicebomb Nightvision Eau de Toilette - Warm, Spicy & Fresh - Cologne for Men - with Notes of Bergamot Citrus, Black Spices & Rosemary", R.drawable.p8, 490, 36, "Perfume"));
+        allItems.add(new Item(79, "Hugo Boss", "Hugo Boss Bottled Eau de Toilette – Woody Men's Cologne – With Notes of Apple, Cinnamon & Wood – Long Lasting Fragrance", R.drawable.p9, 420, 30, "Perfume"));
+        allItems.add(new Item(80, "Bentley Intense", "Bentley Intense B140408 Eau de Parfum, 3.4 Fluid Ounce", R.drawable.p10, 320, 32, "Perfume"));
+        allItems.add(new Item(81, "Afnan 9 PM", "Afnan 9 PM For Men Eau De Parfum, 3.4 Fl. Oz", R.drawable.p11, 330, 40, "Perfume"));
+        allItems.add(new Item(82, "Maison Alhambra Salvo", "Maison Alhambra Salvo for Men - 3.4 oz EDP Spray", R.drawable.p12, 310, 50, "Perfume"));
+        allItems.add(new Item(83, "Paco Rabanne Invictus ", "Paco Rabanne Invictus by Paco Rabanne for Men Eau De Toilette Spray 3.4 Oz", R.drawable.p13, 450, 29, "Perfume"));
+        allItems.add(new Item(84, "Creed Aventus", "Creed Aventus For Her – Women's Luxury Perfume – Woody Fresh, Crisp, Fruity & Floral Fragrance", R.drawable.p14, 1100, 10, "Perfume"));
+        allItems.add(new Item(85, "Lancôme La Vie Est Belle Eau de Parfum", "Lancôme La Vie Est Belle Eau de Parfum - Long Lasting Fragrance with Notes of Iris, Earthy Patchouli, Warm Vanilla & Spun Sugar - Floral & Sweet Women's Perfume", R.drawable.p15, 450, 15, "Perfume"));
+        allItems.add(new Item(86, "Victoria's Secret Bombshell Eau de Parfum", "Victoria's Secret Bombshell Eau de Parfum, Notes of Purple Passion Fruit, Shangri-La Peony & Vanilla Orchid, Perfumes for Women (1.7 oz)", R.drawable.p16, 550, 16, "Perfume"));
+        allItems.add(new Item(87, "Victoria's Secret Bombshell Seduction Eau de Parfum", "Victoria's Secret Bombshell Seduction Eau de Parfum, Notes of White Peony, Sage & Velvet Musk, Perfumes for Women (1.7 oz)", R.drawable.p17, 580, 14, "Perfume"));
+        allItems.add(new Item(88, "Calvin Klein Eternity Eau de Parfum", "Calvin Klein Eternity Eau de Parfum – Floral Women's Perfume – With Notes of Bergamot, White Lily, White Rose, Sandalwood & Amber – Long Lasting Fragrance", R.drawable.p18, 360, 16, "Perfume"));
+        allItems.add(new Item(89, "Stronger With You Intensely", "Armani Beauty - Stronger With You Intensely - Cologne for Men - Fougère Ambery Woody Men’s Fragrance - Pink Pepper, Lavender, Vanilla Notes", R.drawable.p19, 500, 36, "Perfume"));
+        allItems.add(new Item(90, "Acqua di Giò", "Armani Beauty – Acqua di Giò – Elixir – Cologne for Men - Woody & Earthy Fragrance - With Notes of Violet, Leather, and Marine Accords – 1.6 Fl Oz", R.drawable.p20, 560, 36, "Perfume"));
+        allItems.add(new Item(91, "Creed Aventus", "Creed Aventus Eau de Parfum for men", R.drawable.p21, 1650, 10, "Perfume"));
     }
 }
