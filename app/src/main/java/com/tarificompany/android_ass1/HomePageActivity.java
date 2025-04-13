@@ -23,7 +23,11 @@ public class HomePageActivity extends AppCompatActivity {
             "Watches",
             "Gaming",
             "Fitness",
-            "Perfume"
+            "Perfume",
+            "T-shirt",
+            "Jeans",
+            "Jacket",
+            "Shoes"
     };
 
     @Override
@@ -89,6 +93,18 @@ public class HomePageActivity extends AppCompatActivity {
                     break;
                 case "Perfume":
                     intent = new Intent(HomePageActivity.this, PerfumeActivity.class);
+                    break;
+                case "T-shirt":
+                    intent = new Intent(HomePageActivity.this, TShirtActivity.class);
+                    break;
+                case "Jeans":
+                    intent = new Intent(HomePageActivity.this, JeansActivity.class);
+                    break;
+                case "Jacket":
+                    intent = new Intent(HomePageActivity.this, JacketActivity.class);
+                    break;
+                case "Shoes":
+                    intent = new Intent(HomePageActivity.this, ShoesActivity.class);
                     break;
                 default:
                     return;

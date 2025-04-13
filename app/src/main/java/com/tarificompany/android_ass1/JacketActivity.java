@@ -21,7 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
-public class PerfumeActivity extends AppCompatActivity {
+public class JacketActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +32,16 @@ public class PerfumeActivity extends AppCompatActivity {
     }
 
     /**
-     * loadItems method that will load Perfume items.
+     * loadItems method that will load gaming items.
      */
     public void loadItems() {
         TextView title = findViewById(R.id.category_title);
-        title.setText("Perfume");
+        title.setText("Jackets");
 
         // Load items from ItemManager and filter for Jewelry.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
-            if (item.getId() >= 71 && item.getId() <= 91) {
+            if (item.getId() >= 128 && item.getId() <= 147) {
                 itemArrayList.add(item);
             }
         }
@@ -94,7 +94,7 @@ public class PerfumeActivity extends AppCompatActivity {
         // Handle item clicks
         itemsList.setOnItemClickListener((parent, view, position, id) -> {
             Item selectedItem = itemArrayList.get(position);
-            Intent intent = new Intent(PerfumeActivity.this, ItemDetailActivity.class);
+            Intent intent = new Intent(JacketActivity.this, ItemDetailActivity.class);
             intent.putExtra("item_id", selectedItem.getId());
             intent.putExtra("item_name", selectedItem.getName());
             intent.putExtra("item_desc", selectedItem.getDescription());
@@ -103,4 +103,5 @@ public class PerfumeActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
 }

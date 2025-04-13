@@ -51,6 +51,12 @@ public class ItemManager {
             //SetUp perfumes items.
             perfumeItems();
 
+            //setUp clothes and shoes items.
+            tShirtItems();
+            jeansItems();
+            jacketItems();
+            shoesItems();
+
 
             saveItemsToSharedPref();
         } else {
@@ -223,5 +229,87 @@ public class ItemManager {
         allItems.add(new Item(89, "Stronger With You Intensely", "Armani Beauty - Stronger With You Intensely - Cologne for Men - Fougère Ambery Woody Men’s Fragrance - Pink Pepper, Lavender, Vanilla Notes", R.drawable.p19, 500, 36, "Perfume"));
         allItems.add(new Item(90, "Acqua di Giò", "Armani Beauty – Acqua di Giò – Elixir – Cologne for Men - Woody & Earthy Fragrance - With Notes of Violet, Leather, and Marine Accords – 1.6 Fl Oz", R.drawable.p20, 560, 36, "Perfume"));
         allItems.add(new Item(91, "Creed Aventus", "Creed Aventus Eau de Parfum for men", R.drawable.p21, 1650, 10, "Perfume"));
+    }
+
+    /**
+     * TShirtItems method that will setUp TShirt items.
+     */
+
+    public static void tShirtItems() {
+
+        allItems.add(new Item(92, "Carhartt Men's", "Carhartt Men's Loose Fit Heavyweight Short-Sleeve Pocket T-Shirt", R.drawable.t1, 30, 40, "T-shirt"));
+        allItems.add(new Item(93, "NORTHYARD Men's", "NORTHYARD Men's Cotton Work Shirt Heavyweight Crew Neck Short Sleeve T-Shirts Relaxed Fit Outdoor Wear with Chest Pocket", R.drawable.t2, 20, 40, "T-shirt"));
+        allItems.add(new Item(94, "VEIISAR Men's ", "VEIISAR Men's Heavy Weight Crew Neck T-Shirt - Mens Premium 100 Cotton Thick Tees Pre Shrunk", R.drawable.t3, 33, 45, "T-shirt"));
+        allItems.add(new Item(95, "COOFANDY Mens", "COOFANDY Mens T-Shirts 100% Cotton Heavyweight Premium Short Sleeve Shirt Crew Neck Basic Tshirt", R.drawable.t4, 40, 36, "T-shirt"));
+        allItems.add(new Item(96, "COOFANDY Men's", "COOFANDY Men's T- Shirts Short Sleeve Knit Sweater Shirt Casual Crewneck Ribbed Pullover Tees", R.drawable.t5, 55, 40, "T-shirt"));
+        allItems.add(new Item(97, "COOFANDY Men's", "COOFANDY Men's T Shirt Short Sleeve Crew Neck T-Shirts Casual Summer Classic Basic Tees", R.drawable.t6, 55, 10, "T-shirt"));
+        allItems.add(new Item(98, "COOFANDY Men's", "COOFANDY Men's Muscle T-Shirt Pleated Raglan Sleeve Bodybuilding Gym Tee Short Sleeve Fashion Workout Shirts Hipster Shirt", R.drawable.t7, 45, 33, "T-shirt"));
+        allItems.add(new Item(99, "COOFANDY Men's ", "COOFANDY Men's Muscle T Shirts Stretch Short Sleeve V Neck Bodybuilding Workout Tee Shirts Ribbed Knit Shirt", R.drawable.t8, 32, 33, "T-shirt"));
+        allItems.add(new Item(100, "Sailwind Men", "Sailwind Mens Muscle Slim Henley Shirts Short Sleeve Athletic T-Shirts Cotton Summer Button Tees", R.drawable.t9, 30, 40, "T-shirt"));
+        allItems.add(new Item(101, "COOFANDY Men's", "COOFANDY Men's Henley Shirts Short Sleeve Casual Basic Henley Tee Summer Button Lightweight Stretch T Shirts", R.drawable.t10, 40, 30, "T-shirt"));
+        allItems.add(new Item(102, "Ficerd Men's ", "Ficerd Men's Big and Tall Shirt Short Sleeve Summer Cotton Tee Crew Neck Oversize Top Casual Loose Fit Knitted T Shirt M-7XL", R.drawable.t11, 44, 36, "T-shirt"));
+        allItems.add(new Item(103, "Ficerd 6 Pack", "Ficerd 6 Pack Men's Big and Tall Shirts Short Sleeve Cotton Tee Summer Crew Neck Oversize Top Loose Fit Shirt Multipack", R.drawable.t12, 88, 36, "T-shirt"));
+        allItems.add(new Item(104, "Ficerd 3 Pack", "Ficerd 3 Pack Men's Big and Tall Shirts Cotton Short Sleeve Plus Size Tee Loose Fit Casual T Shirts Basic Oversized Tops", R.drawable.t13, 80, 32, "T-shirt"));
+        allItems.add(new Item(105, "Ficerd 3 Pack", "Ficerd 3 Pack Men's Big and Tall T Shirt, Short Sleeve Pocket Cotton Tee Crew Neck Lightweight Tops Solid Loose Fit Shirts", R.drawable.t14, 99, 52, "T-shirt"));
+        allItems.add(new Item(106, "Neer 4 Pack", "Neer 4 Pack Men's Big and Tall V Neck T-Shirts Casual Short Sleeve Cotton Tee Shirt Plus Size Summer Basic Tops", R.drawable.t15, 119, 36, "T-shirt"));
+        allItems.add(new Item(107, "Ficerd 3 Pack ", "Ficerd 3 Pack Men's Big and Tall Shirts Short Sleeve Cotton Tee Crew Neck Basic Casual Top Loose Fit Summer T Shirts", R.drawable.t16, 120, 30, "T-shirt"));
+        allItems.add(new Item(108, "Ficerd 3 Pack", "Ficerd 3 Pack Men's Big and Tall Shirts Cotton Short Sleeve Plus Size Tee Loose Fit Casual T Shirts Basic Oversized Tops", R.drawable.t17, 69, 35, "T-shirt"));
+    }
+
+    /**
+     * JeansItems method that will setUp Jeans items.
+     */
+    public static void jeansItems() {
+        allItems.add(new Item(109, "Men's Classic", "Men's Classic Relaxed Fit", R.drawable.j1, 33, 40, "Jeans"));
+        allItems.add(new Item(110, "APUOR Men's Straight Leg ", "APUOR Men's Straight Leg Stretch Jeans Relaxed Fit Work Jeans Athletic Fit Loose Pants", R.drawable.j2, 50, 45, "Jeans"));
+        allItems.add(new Item(111, "APUOR Regular Fit", "APUOR Regular Fit Stretch Jeans for Men Straight Leg Work Jeans Men's Comfy Casual Pants", R.drawable.j3, 55, 36, "Jeans"));
+        allItems.add(new Item(112, "Weatherproof Vintage Men's Jeans", "Weatherproof Vintage Men's Jeans | Super-Soft Denim Jeans | Stretch Jeans for Men, Blue & Black Jeans for Men, Slim Fit Jeans", R.drawable.j4, 39, 40, "Jeans"));
+        allItems.add(new Item(113, "Heyfanee Mens Slim Fit", "Heyfanee Mens Slim Fit Jeans Skinny Stretchy Denim Pants for Men", R.drawable.j5, 33, 35, "Jeans"));
+        allItems.add(new Item(114, "GINGTTO Mens", "GINGTTO Mens Skinny Jeans Ripped Stretch Denim Jeans for Men", R.drawable.j6, 34, 36, "Jeans"));
+        allItems.add(new Item(115, "HUNGSON Men's ", "HUNGSON Men's Ripped Skinny Jeans Stretchy Slim Fit Jeans Pants for Men", R.drawable.j7, 28, 35, "Jeans"));
+        allItems.add(new Item(116, "Mens Jeans Skinny", "Mens Jeans Skinny Stretch Premium High Rise Colored Jeans Expandable Waist", R.drawable.j8, 35, 29, "Jeans"));
+        allItems.add(new Item(117, "APUOR Slim Fit Jeans", "APUOR Slim Fit Jeans for Men Straight Fit Stretch Skinny Jeans Soft Comfy Denim Pants", R.drawable.j9, 35, 39, "Jeans"));
+        allItems.add(new Item(118, "IZOD Men's Jeans", "IZOD Men's Jeans - Regular Fit Comfort Stretch Knit Denim Jeans - Straight Leg Casual Pants for Men", R.drawable.j10, 35, 28, "Jeans"));
+        allItems.add(new Item(119, "Men's Stretch Denim Jeans", "Men's Stretch Denim Jeans Classic Jeans with Embroidered Design, ESDVD Street Style Regular Jeans Relaxed Fit Pants Comfy", R.drawable.j11, 39, 36, "Jeans"));
+        allItems.add(new Item(120, "Wrangler Authentics Men's", "Wrangler Authentics Men's Comfort Flex Waist Relaxed Fit Jean", R.drawable.j12, 46, 40, "Jeans"));
+        allItems.add(new Item(121, "Tapata Men's Relaxed Fit ", "Tapata Men's Relaxed Fit Cargo Jeans Elastic Waist 6 Pockets Straight Leg Work Utility Pants", R.drawable.j13, 80, 36, "Jeans"));
+        allItems.add(new Item(122, "Verdusa Men's", "Verdusa Men's Casual Denim Cargo Pants Jeans with Cargo Pockets", R.drawable.j14, 46, 35, "Jeans"));
+        allItems.add(new Item(123, "Wrangler Authentics ", "Wrangler Authentics Men's Athletic Fit Stretch Jean", R.drawable.j15, 39, 35, "Jeans"));
+        allItems.add(new Item(124, "Levi's Men's ", "Levi's Men's 505 Regular Fit Jeans", R.drawable.j16, 69, 20, "Jeans"));
+        allItems.add(new Item(125, "Levi's 505", "Levi's 505 Regular Nail Loop Knot 32 30", R.drawable.j17, 82, 60, "Jeans"));
+        allItems.add(new Item(126, "Lee Men's", "Lee Men's X Move Regular Straight Jean", R.drawable.j18, 89, 40, "Jeans"));
+        allItems.add(new Item(127, "Men's Slim Fit ", "Men's Slim Fit Stretch Jeans", R.drawable.j19, 45, 19, "Jeans"));
+    }
+
+    /**
+     * JacketItems method that will setUp Jacket items.
+     */
+    public static void jacketItems() {
+        allItems.add(new Item(128, "33,000ft Men's Hooded", "33,000ft Men's Hooded Softshell Jacket Waterproof Lightweight Insulated Windbreaker Fleece Lined Rain Shell Jacket", R.drawable.k1, 90, 36, "Jacket"));
+        allItems.add(new Item(129, "SOLDIER Men's", "FREE SOLDIER Men's Outdoor Waterproof Soft Shell Hooded Military Tactical Jacket", R.drawable.k2, 120, 19, "Jacket"));
+        allItems.add(new Item(130, "SOLDIER Men's Lightweight", "FREE SOLDIER Men's Lightweight Softshell Jacket Winter Fleece Lined Hooded Rain Waterproof Hiking Outdoor Jackets", R.drawable.k3, 108, 19, "Jacket"));
+        allItems.add(new Item(131, "Columbia Steens ", "Columbia Steens Mountain Full Zip 2.0", R.drawable.k4, 95, 17, "Jacket"));
+        allItems.add(new Item(132, "Tommy Hilfiger", "Tommy Hilfiger Men's Classic Zip Front Polar Fleece Jacket", R.drawable.k5, 55, 19, "Jacket"));
+        allItems.add(new Item(133, "TACVASEN Men's", "TACVASEN Men's Jackets-Bomber Jacket Fall Winter Warm Windbreaker Full Zip Casual Padded Coats", R.drawable.k6, 39, 18, "Jacket"));
+        allItems.add(new Item(134, "Columbia Women's", "Columbia Women's Benton Springs Full Zip", R.drawable.k7, 63, 29, "Jacket"));
+        allItems.add(new Item(135, "Eurivicy Women Fleece Jacket", "Eurivicy Women Fleece Jacket Winter Bomber Long Sleeve Faux Sherpa Fuzzy Casual Zip Up Coat Pocket", R.drawable.k8, 36, 25, "Jacket"));
+        allItems.add(new Item(136, "Zeagoo Bomber Jacket Women ", "Zeagoo Bomber Jacket Women Varsity Casual Striped Button Down Lightweight Spring Short Outwear with Pockets", R.drawable.k9, 88, 13, "Jacket"));
+        allItems.add(new Item(137, "Women's Bomber Jacket", "Women's Bomber Jacket Lightweight Varsity Zip Up Coat Casual Long Sleeve Windbreaker", R.drawable.k10, 29, 36, "Jacket"));
+        allItems.add(new Item(138, "EVALESS Womens", "EVALESS Womens Zip Up Jacket Roll Tab Sleeve Flap Pocket Drawstring Hem Utility Lightweight Cropped Jackets", R.drawable.k11, 45, 43, "Jacket"));
+        allItems.add(new Item(139, "Women's Ligtweight Jackets", "Women's Ligtweight Jackets Anorak Utility Drawstring Waist Hoodie Zip Up Fall Casual Coat with Pockets", R.drawable.k12, 110, 35, "Jacket"));
+        allItems.add(new Item(140, "Wrangler Authentics ", "Wrangler Authentics Women's Stretch Denim Jacket    ", R.drawable.k13, 62, 18, "Jacket"));
+        allItems.add(new Item(141, "", "", R.drawable.k14, 45, 19, "Jacket"));
+        allItems.add(new Item(142, "luvamia 2025", "luvamia 2025 Cropped Jean Jackets for Women Fashion Short Denim Shacket Jacket Lightweight Fitted Stretchy with Pockets", R.drawable.k15, 52, 19, "Jacket"));
+        allItems.add(new Item(143, "luvamia Denim", "luvamia Denim Jacket for Women Distressed Jean Jackets Button Up Vintage Western Trucker Jacket Frayed Hem Pockets", R.drawable.k16, 44, 32, "Jacket"));
+        allItems.add(new Item(144, "AUTOMET Womens Faux Leather", "AUTOMET Womens Faux Leather Jackets Suede Fall Fashion 2025 Outfits Winter Clothes Open Front Cropped Coat Outwear", R.drawable.k17, 110, 18, "Jacket"));
+        allItems.add(new Item(146, "Fahsyee Faux Leather Jacket", "Fahsyee Faux Leather Jacket for Women, Vegan Jackets Moto Biker Motocycle Coa", R.drawable.k18, 99, 10, "Jacket"));
+        allItems.add(new Item(147, "Fahsyee Black Faux Leather Jacket", "Fahsyee Black Faux Leather Jackets for Women Motorcycle PU Moto Biker Outwear Coat", R.drawable.k19, 99, 15, "Jacket"));
+    }
+
+    /**
+     * shoesItems method that will setUp shoes items.
+     */
+    public static void shoesItems() {
+
     }
 }
