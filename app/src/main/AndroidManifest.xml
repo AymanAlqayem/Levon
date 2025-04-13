@@ -13,6 +13,24 @@
         android:theme="@style/AymanTheme"
         tools:targetApi="31">
         <activity
+            android:name=".PhoneCasesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AirpodsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PSGActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaptopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".ShoesActivity"
             android:exported="false" />
         <activity

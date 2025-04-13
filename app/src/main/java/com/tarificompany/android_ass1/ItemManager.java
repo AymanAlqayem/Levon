@@ -57,6 +57,24 @@ public class ItemManager {
             jacketItems();
             shoesItems();
 
+            //SetUp home items.
+            homeItems();
+
+            //SetUp laptop items.
+            laptopItems();
+
+            //SetUp PS items.
+            PSItems();
+
+            //SetUp PSG items.
+            PSGItems();
+
+            //SetUp airpods items.
+            airpodsItems();
+
+            //SetUp phone cases.
+            phoneCases();
+
 
             saveItemsToSharedPref();
         } else {
@@ -143,7 +161,7 @@ public class ItemManager {
         allItems.add(new Item(21, "Apple Watch Series 7 ", "Apple Watch Series 7 [GPS 41mm] Smart Watch w/Starlight Aluminum Case with Starlight Sport Band. Fitness Tracker, Blood Oxygen & ECG Apps, Always-On Retina Display, Water Resistant", R.drawable.w22, 850, 30, "Watches"));
         allItems.add(new Item(22, "Samsung Galaxy Watch 7", "Samsung Galaxy Watch 7 40mm Bluetooth AI Smartwatch w/Energy Score, Wellness Tips, Heart Rate Tracking, Sleep Monitor, Fitness Tracker, 2024, Cream [US Version, 1Yr Manufacturer Warranty]", R.drawable.w23, 550, 80, "Watches"));
         allItems.add(new Item(23, "Samsung Galaxy Watch Ultra ", "Samsung Galaxy Watch Ultra 47mm LTE AI Smartwatch w/Energy Score, Wellness Tips, Heart Rate Tracking, Sleep Monitor, Fitness Tracker, GPS, 2024,Titanium Silver [US Version, 1Yr Manufacturer Warranty]", R.drawable.w24, 850, 41, "Watches"));
-        allItems.add(new Item(24, "Samsung Galaxy Watch FE  ", "Samsung Galaxy Watch FE (40mm) AI Smartwatch w/ 1.2\" Amoled Screen, Wear OS 5, Wi-Fi, Bluetooth, Heart Rate, International Model R861N (Black)", R.drawable.w25, 650, 66, "Watches"));
+        allItems.add(new Item(24, "Samsung Galaxy Watch FE  ", "Samsung Galaxy Watch FE (40mm) AI Smartwatch w/ 1.2 Amoled Screen, Wear OS 5, Wi-Fi, Bluetooth, Heart Rate, International Model R861N (Black)", R.drawable.w25, 650, 66, "Watches"));
     }
 
     /**
@@ -329,6 +347,107 @@ public class ItemManager {
         allItems.add(new Item(163, "yageyan Men’s", "yageyan Men’s Low Top Canvas Walking Shoes Lace-up Fashion Sneakers Casual", R.drawable.s17, 89, 23, "Shoes"));
         allItems.add(new Item(164, "yageyan Men", "yageyan Men Canvas Low top Shoes Classic Casual Sneakers Black and White Fashion Shoes", R.drawable.s18, 29, 15, "Shoes"));
         allItems.add(new Item(165, "Unisex Low Top Lace Up Casual ", "Unisex Low Top Lace Up Casual Canvas Shoes for Women and Men, Comfortable Lightweight Classic Fashion Sneakers Popular 2024, Zapatillas Casual De Lona De Moda para Hombre Y Mujer", R.drawable.s19, 69, 15, "Shoes"));
-        allItems.add(new Item(166, "yageyan Men", "yageyan Men Canvas Low top Shoes Classic Casual Sneakers Black and White Fashion Shoes", R.drawable.s20, 801, 19, "Shoes"));
+        allItems.add(new Item(166, "yageyan Men", "yageyan Men Canvas Low top Shoes Classic Casual Sneakers Black and White Fashion Shoes", R.drawable.s20, 80, 19, "Shoes"));
+    }
+
+
+    /**
+     * homeItems method that will setUp home items.
+     */
+    public static void homeItems() {
+        allItems.add(new Item(167, "Welcome Home Banner", "Welcome Home Banner with Two Heart and A Vivid Home Sign Flash Party Decorations, Fully Assembled and Ready to Hang, Funny Welcome Party Sign Decors for Family Housewarming", R.drawable.h1, 3, 19, "Home"));
+        allItems.add(new Item(168, "Large Welcome Home Banner", "Large Welcome Home Banner 71 x 15.7 Inches Spring Summer Fall Flower Cluster Welcome Banner Yard Sign Decoration Welcome Home Garland Hanging Photo Booth Background (White Background with Grass)", R.drawable.h2, 8, 16, "Home"));
+        allItems.add(new Item(169, "30 PCS Push Pins", "30 PCS Push Pins Picture Hangers Wall Hooks, Double Headed Thumb Tacks for Wall Hangings, Renter Friendly Decor Small Picture Frame Hangers for Drywall Cork Board Home Office Photo Decorations(Black)", R.drawable.h3, 6, 22, "Home"));
+        allItems.add(new Item(170, "Easter Decorations", "Easter Decorations - Artificial Tulips and Bunny Easter Vase Filler Set, Easter Centerpieces for Tables, Spring Centerpiece for Home and Holiday Celebrations", R.drawable.h4, 18, 14, "Home"));
+        allItems.add(new Item(171, "Hula Home Hand", "Hula Home Hand Casting Kit for Couples or Family with Mounting Plaque | Anniversary DIY Gifts Her & Him, Keepsake Sculpture Wedding Kids,", R.drawable.h5, 48, 18, "Home"));
+        allItems.add(new Item(172, "Command Poster Strips,", "Command Poster Strips, 64 Command Strips Damage Free Hanging Poster Hangers, No Tools Wall Hanging Strips for Home Decor, Room Decor, Wall Decor, and Office Decor, White Adhesive Strips", R.drawable.h6, 18, 23, "Home"));
+        allItems.add(new Item(173, "Super3 UV Countertop Reverse Osmosis Water Filter", "Super3 UV Countertop Reverse Osmosis Water Filter, Remineralization Filter Cartridge, 6-Stage RO Filtration System, 3: 1 Pure to Drain, Home Water Purifier, Reduce TDS PFAS", R.drawable.h7, 450, 8, "Home"));
+        allItems.add(new Item(174, "Water Filter System", "UV Countertop Reverse Osmosis Water Filter System, 8 Stage Water Purifier, Instant Hot Water, 5 Temp&Volume Settings, 7L Large Water Tank for Home Kitchen, 4:1 Pure to Drain, BPA Free, No Installation", R.drawable.h8, 350, 19, "Home"));
+        allItems.add(new Item(175, "Water Purifier", "Reverse Osmosis Water Filter, Water Purifier, 8-Stage RO Filtration System, Portable Water Purifier Countertop for Kitchen, Office, Grey", R.drawable.h9, 190, 10, "Home"));
+    }
+
+    /**
+     * laptopItems method that will setUp laptop items.
+     */
+    public static void laptopItems() {
+        allItems.add(new Item(176, "2025 Laptop", "2025 Laptop, Laptop with AMD Ryzen 7 5700U (8C/16T, Up to 4.3GHz), 16GB RAM 512GB NVMe SSD Laptop Computer, Radeon RX Vega 8 Graphics, 16.1-inch FHD Display, WiFi 6, 53Wh Battery, Backlit KB", R.drawable.l1, 650, 4, "Laptop"));
+        allItems.add(new Item(177, "2025 Laptop", "2025 Laptop, Laptop Computer with AMD Ryzen 7 5000 Series (8C/16T, Up to 4.3GHz), 16GB RAM 512GB NVMe SSD Windows 11 Laptop, Radeon RX Vega 8 Graphics, WiFi 6, 53Wh Battery, Backlit KB", R.drawable.l2, 650, 3, "Laptop"));
+        allItems.add(new Item(178, "MSI Katana ", "MSI Katana 15 15.6” 165Hz QHD Gaming Laptop: Intel Core i7-13620H, NVIDIA Geforce RTX 4070, 16GB DDR5, 1TB NVMe SSD, Cooler Boost 5, Win 11: Black B13VGK-2000US", R.drawable.l3, 1550, 6, "Laptop"));
+        allItems.add(new Item(179, "jumper Laptop", "jumper Laptop, 16 inch Laptop Computer, Quad-Core Processor, 512GB SSD 16GB DDR4, 5G/2.4G WiFi, 1920x1200 FHD Display, Long Battery Life, Type C, Traditional Laptops for Business Office Student", R.drawable.l4, 540, 1, "Laptop"));
+        allItems.add(new Item(180, "LG gram", "LG gram 16-inch Thin and Lightweight Laptop Computer, Intel Evo Edition Powered by Intel Core Ultra7 256V Processor, Windows 11 Home, 16GB RAM, 2TB SSD - Obsidian Black", R.drawable.l5, 2200, 3, "Laptop"));
+        allItems.add(new Item(181, "Acer Aspire", "Acer Aspire 5 15 Slim Laptop | 15.6 FHD IPS Touch 1920 x 1080 | Intel Core i7-1355U | Intel Iris Xe Graphics | 16GB LPDDR5 | 512GB Gen 4 SSD | Wi-Fi 6E 802.11ax | Backlit Keyboard |", R.drawable.l6, 850, 2, "Laptop"));
+        allItems.add(new Item(182, "Lenovo 2024 IdeaPad", "Lenovo 2024 IdeaPad 1 Gen 7 Laptop, 15.6 FHD Touchscreen, Intel Core i3-1215U, 16GB RAM, 1TB SSD, SD Card Reader, HDMI, Webcam, Wi-Fi 6, Windows 11 Home, Grey", R.drawable.l8, 780, 10, "Laptop"));
+        allItems.add(new Item(183, "Lenovo V15 Laptop", "Lenovo V15 Laptop, 15.6 FHD Display, AMD Ryzen 5 5500U Hexa-core Processor (Beat Intel i7-1065G7), 16GB RAM, 512GB SSD, HDMI, RJ45, Numeric Keypad, Wi-Fi, Windows 11 Pro, Black", R.drawable.l7, 1100, 10, "Laptop"));
+        allItems.add(new Item(184, "Lenovo IdeaPad", "Lenovo IdeaPad 1 14 Laptop, 14.0 HD Display, Intel Celeron N4020, 4GB RAM, 64GB Storage, Intel UHD Graphics 600, Win 10 in S Mode, Ice Blue", R.drawable.l9, 1550, 4, "Laptop"));
+        allItems.add(new Item(185, "Lenovo Chromebook", "Lenovo Chromebook Slim Thin Light Laptop Student Business 2024, 14 FHD Touchscreen, 8-Core MediaTek Kompanio 520, 4GB RAM, 128GB (64GB eMMC+64GB Card), WiFi 6, Long Hours, Chrome OS+HubxcelAccesory", R.drawable.l10, 190, 10, "Laptop"));
+    }
+
+    /**
+     * PSItems method that will setUp PS consoles items.
+     */
+    public static void PSItems() {
+        allItems.add(new Item(186, "PlayStation 5 ", " PlayStation 5 console (slim)", R.drawable.c1, 650, 10, "PS"));
+        allItems.add(new Item(187, "PlayStation Portal", "PlayStation Portal Remote Player 5", R.drawable.c2, 650, 11, "PS"));
+        allItems.add(new Item(188, "Sony Playstation PS4", "Sony Playstation PS4 1TB Black Console", R.drawable.c3, 350, 4, "PS"));
+        allItems.add(new Item(189, "PlayStation 2 Slim", "PlayStation 2 Slim Console PS2", R.drawable.c4, 144, 3, "PS"));
+        allItems.add(new Item(190, "Sony PlayStation Classic ", "Sony PlayStation Classic - PlayStation", R.drawable.c5, 190, 10, "PS"));
+        allItems.add(new Item(191, "Sony PlayStation 4 Pro", "Sony PlayStation 4 Pro 1TB Premium Bundle", R.drawable.c6, 290, 2, "PS"));
+        allItems.add(new Item(192, "Sony Original Playstation One", "Sony Original Playstation One Console", R.drawable.c7, 99, 1, "PS"));
+        allItems.add(new Item(193, "Sony PlayStation 4 Slim ", "Sony PlayStation 4 Slim 1TB Premium Bundle", R.drawable.c8, 240, 4, "PS"));
+    }
+
+    /**
+     * PSGItems method that will setUp PS games items.
+     */
+    public static void PSGItems() {
+        allItems.add(new Item(194, "Call of Duty Modern Warfare", "PlayStation 4 Console – Call of Duty Modern Warfare II Bundle", R.drawable.e1, 350, 9, "PSG"));
+        allItems.add(new Item(195, "Grand Theft Auto V", "Grand Theft Auto V Playstation 4", R.drawable.e2, 30, 20, "PSG"));
+        allItems.add(new Item(196, "Grand Theft Auto V", "Grand Theft Auto V: Premium Edition (PS4)", R.drawable.e3, 14, 19, "PSG"));
+        allItems.add(new Item(197, "Red Dead Redemption 2", "Red Dead Redemption 2 (PS4)", R.drawable.e4, 30, 18, "PSG"));
+        allItems.add(new Item(198, "Mafia Trilogy", "Mafia Trilogy (PS4)", R.drawable.e5, 33, 4, "PSG"));
+        allItems.add(new Item(199, "Mafia 3", "Mafia 3 PS5", R.drawable.e6, 40, 19, "PSG"));
+        allItems.add(new Item(200, "NBA 2K25", "NBA 2K25 - PlayStation 5", R.drawable.e7, 24, 4, "PSG"));
+        allItems.add(new Item(201, "Undisputed", "Undisputed - PlayStation 5", R.drawable.e8, 40, 23, "PSG"));
+        allItems.add(new Item(202, "The Crew 2", "The Crew 2 (PS4)", R.drawable.e9, 25, 22, "PSG"));
+        allItems.add(new Item(203, "The Crew Motorfest", "The Crew Motorfest - Standard Edition, PlayStation 4", R.drawable.e10, 50, 15, "PSG"));
+        allItems.add(new Item(204, "Gran Turismo 7 ", "Gran Turismo 7 Standard Edition - PlayStation 4", R.drawable.e11, 55, 17, "PSG"));
+    }
+
+    /**
+     * airpodsItems method that will setUp airpods items.
+     */
+    public static void airpodsItems() {
+        allItems.add(new Item(205, "Apple AirPods 4", "Apple AirPods 4 Wireless Earbuds, Bluetooth Headphones, with Active Noise Cancellation, Adaptive Audio, Transparency Mode, Personalized Spatial Audio, USB-C Charging Case with AppleCare+ (2 Years)", R.drawable.a1, 250, 17, "Airpods"));
+        allItems.add(new Item(206, "Apple AirPods Pro ", "Apple AirPods Pro (2nd Generation) Wireless Ear Buds with USB-C Charging, Up to 2X More Active Noise Cancelling Bluetooth Headphones, Transparency Mode, Adaptive Audio, Personalized Spatial Audio", R.drawable.a2, 200, 26, "Airpods"));
+        allItems.add(new Item(207, "JBL Vibe Beam", "JBL Vibe Beam - True Wireless JBL Deep Bass Sound Earbuds, Bluetooth 5.2, Water & Dust Resistant, Hands-free call with VoiceAware, Up to 32 hours of battery life", R.drawable.a3, 66, 18, "Airpods"));
+        allItems.add(new Item(208, "Beats Studio Buds +", "Beats Studio Buds + | True Wireless Noise Cancelling Earbuds, Enhanced Apple & Android Compatibility, Built-in Microphone, Sweat Resistant Bluetooth Headphones, Spatial Audio - Black/Gold", R.drawable.a4, 150, 26, "Airpods"));
+        allItems.add(new Item(209, "Ear Buds Bluetooth Headphones ", "Ear Buds Bluetooth Headphones 50H Playtime Wireless Earbuds with Wireless Charging Case Dual LED Display Bluetooth earbuds Deep Bass Stereo in Ear Headphones for Smartphone Laptop Sports Workout White", R.drawable.a5, 15, 28, "Airpods"));
+        allItems.add(new Item(210, "Beats Fit Pro ", "Beats Fit Pro - True Wireless Noise Cancelling Earbuds - Apple H1 Headphone Chip, Compatible with Apple & Android, Class 1 Bluetooth, Built-in Microphone, 6 Hours of Listening Time - Beats Black", R.drawable.a6, 155, 17, "Airpods"));
+        allItems.add(new Item(211, "Apple AirPods", "Apple AirPods (3rd Generation) Wireless Ear Buds, Bluetooth Headphones, Spatial Audio, Water Resistant, Lightning Charging Case Included, Up to 30 Hours of Battery Life With AppleCare+ (2 Years)", R.drawable.a7, 170, 30, "Airpods"));
+        allItems.add(new Item(212, "JBL Endurance Peak 3", "JBL Endurance Peak 3 - Dust and Water Proof (IP68) True Wireless Active Earbuds, Pure Bass Sound, Up to 50 Total Hours of Playback with Speed Charge, Ambient Aware & Talk Thru (White)", R.drawable.a8, 90, 19, "Airpods"));
+        allItems.add(new Item(213, "Apple AirPods Max ", "Apple AirPods Max Wireless Over-Ear Headphones, Pro-Level Active Noise Cancellation, Transparency Mode, Personalized Spatial Audio - Starlight with AppleCare+ (2 Years)", R.drawable.a9, 650, 22, "Airpods"));
+        allItems.add(new Item(214, "SAMSUNG Galaxy Buds 3", "SAMSUNG Galaxy Buds 3 Pro AI True Wireless Bluetooth Earbuds, Noise Cancelling, Sound Optimization, Redesigned Comfort Fit, Silver [US Version, Amazon Exclusive, 2Yr Warranty]", R.drawable.a10, 210, 30, "Airpods"));
+        allItems.add(new Item(215, "Beats Studio Buds + ", "Beats Studio Buds + | True Wireless Noise Cancelling Earbuds, Enhanced Apple & Android Compatibility, Built-in Microphone, Sweat Resistant Bluetooth Headphones, Spatial Audio - Transparent", R.drawable.a11, 110, 26, "Airpods"));
+    }
+
+    /**
+     * phoneCases method that will setUp airpods items.
+     */
+    public static void phoneCases() {
+        allItems.add(new Item(216, "SUPFINE Magnetic for iPhone", "SUPFINE Magnetic for iPhone 14 Case & iPhone 13 Case (Compatible with MagSafe)(Military Grade Drop Protection) Slim Translucent Matte Shockproof Phone Cover,Black", R.drawable.q1, 18, 30, "Phone cases"));
+        allItems.add(new Item(217, "ESR Case for iPhone", "ESR Case for iPhone 13 and iPhone 14 Case, Compatible with MagSafe, Classic Hybrid Magnetic Mobile Phone Case with HaloLock, Military Standard Drop Protection Case, Scratch-Resistant Back, Clear", R.drawable.q2, 10, 27, "Phone cases"));
+        allItems.add(new Item(218, "SURITCH for iPhone 13/14", "SURITCH for iPhone 13/14 Case with Magnetic Camera Slide Cover and Adjustable Kickstand, Compatible with MagSafe, Shockproof Bumper Case Slim Protective Cover for iPhone 13/14 6.1 Inch, Black", R.drawable.q3, 10, 20, "Phone cases"));
+        allItems.add(new Item(219, "Case Protective Cover", "for iPhone 13 Case Protective Cover: for iPhone 14 / iPhone 16e Case Heavy Duty Military Grade Hard Protection Shock Proof Grip | Durable Dual-Layer Design with Built-in Kickstand Black", R.drawable.q4, 16, 14, "Phone cases"));
+        allItems.add(new Item(220, "Caka for iPhone ", "Caka for iPhone 14 Case, iPhone 13 Case with Camera Cover & Kickstand with Built-in 360°Rotate Ring Stand Heavy Duty Protective Phone Cover Case for iPhone 14 & iPhone 13 - Green", R.drawable.q15, 19, 22, "Phone cases"));
+        allItems.add(new Item(221, "JUESHITUO Magnetic Metallic Glossy Clear", "JUESHITUO Magnetic Metallic Glossy Clear for iPhone 14 Case with Full Camera Cover Protection [No.1 Strong N52 Magnets] [Military Grade Drop Protection] for Women Girls Phone Case (6.1\")-Pink", R.drawable.q5, 10, 14, "Phone cases"));
+        allItems.add(new Item(222, "JUESHITUO Magnetic Metallic Glossy Clear", "JUESHITUO Magnetic Metallic Glossy Clear for iPhone 13 Case with Full Camera Cover Protection [No.1 Strong N52 Magnets] [Military Grade Drop Protection] for Women Girls Phone Case (6.1\")-Space Black", R.drawable.q6, 5, 13, "Phone cases"));
+        allItems.add(new Item(223, "OtterBox iPhone ", "OtterBox iPhone 16e, 15, 14, & 13 Commuter Series Case - Crisp Denim (Blue), Slim & Tough, Pocket-Friendly, with Port Protection", R.drawable.q7, 40, 14, "Phone cases"));
+        allItems.add(new Item(224, "Magnetic Shockproof", "Magnetic Shockproof for iPhone 16e Case 2025[Compatible with MagSafe][Military-Grade Protection] Anti-Yellowing,Anti-Scratch Matte Back Protective Phone Case for iPhone 16 e case 6.1\",Green", R.drawable.q8, 14, 17, "Phone cases"));
+        allItems.add(new Item(225, "elago Liquid Silicone Case", "elago Liquid Silicone Case Compatible with iPhone 15 Pro Case, Premium Silicone, Full Body Protective Case [4-Layer Shockproof Structure], Soft Microfiber Lining Stone", R.drawable.q9, 10, 19, "Phone cases"));
+        allItems.add(new Item(226, "IceSword ", "IceSword Compatible with iPhone 15 Pro Case Stone, Liquid Silicone Case Phone Cover Slim Protective, Soft Anti-Scratch Light Beige Tan Cream Warm Sand [Shockproof] 6.1 inch 15Pro- Stone", R.drawable.q10, 4, 17, "Phone cases"));
+        allItems.add(new Item(227, "FireNova ", "FireNova for iPhone 14 Pro Case, Silicone Upgraded [Camera Protection] Phone Case with [2 Screen Protectors], Soft Anti-Scratch Microfiber Lining Inside, 6.1 inch, Light Brown", R.drawable.q11, 23, 17, "Phone cases"));
+        allItems.add(new Item(228, "SURPHY Designed for iPhone", "SURPHY Designed for iPhone 14 Pro Case with Screen Protector, (Camera Protection & Soft Microfiber Lining) Liquid Silicone Phone Case, Lilac Purple", R.drawable.q12, 19, 13, "Phone cases"));
+        allItems.add(new Item(229, "JETech Silicone Case ", "JETech Silicone Case for iPhone 14 Pro 6.1-Inch, Silky-Soft Touch Full-Body Protective Phone Case, Shockproof Cover with Microfiber Lining (Deep Purple)", R.drawable.q13, 10, 10, "Phone cases"));
+        allItems.add(new Item(230, "JETech Magnetic Case", "JETech Magnetic Case for iPhone 14 Pro 6.1-Inch Compatible with MagSafe, Translucent Matte Back Slim Shockproof Phone Cover (Light Gold)", R.drawable.q14, 6, 19, "Phone cases"));
     }
 }
