@@ -43,9 +43,6 @@
             android:name=".TShirtActivity"
             android:exported="false" />
         <activity
-            android:name=".ClothesActivity"
-            android:exported="false" />
-        <activity
             android:name=".PerfumeActivity"
             android:exported="false" />
         <activity
@@ -56,9 +53,6 @@
             android:exported="false" />
         <activity
             android:name=".WatchesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AymanActivity"
             android:exported="false" />
         <activity
             android:name=".FavoritesActivity"
@@ -84,9 +78,6 @@
         <activity
             android:name=".HomePageActivity"
             android:exported="true" />
-        <activity
-            android:name=".JewelryActivity"
-            android:exported="false" />
         <activity
             android:name=".ItemDetailActivity"
             android:exported="false" />
