@@ -25,12 +25,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class CartActivity extends AppCompatActivity {
     private ListView cartListView;
     private TextView totalPriceView;
     private TextView emptyCartMessage;
     private Button checkoutButton;
+    private Button previousOrdersButton;
     private ArrayList<CartItem> cartItems;
     private ArrayList<String> displayItems;
     private ArrayAdapter<CartItem> adapter;
@@ -40,6 +44,7 @@ public class CartActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "CartPrefs";
     private static final String KEY_CART_ITEMS = "CartItems";
+    private static final String KEY_ORDERS = "Orders";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +58,14 @@ public class CartActivity extends AppCompatActivity {
         setUpListeners();
     }
 
-    /**
-     * setUpViews method that will initialize the views..
-     */
     private void setUpViews() {
         cartListView = findViewById(R.id.cart_list);
         totalPriceView = findViewById(R.id.total_price);
-        emptyCartMessage = findViewById(R.id.empty_cart_message); // Initialize the TextView
+        emptyCartMessage = findViewById(R.id.empty_cart_message);
         checkoutButton = findViewById(R.id.checkout_button);
+        previousOrdersButton = findViewById(R.id.previous_orders_button);
     }
+
 
     /**
      * setUpSharedPref method that setup the shared preferences.
@@ -97,6 +101,75 @@ public class CartActivity extends AppCompatActivity {
         }
         updateCartDisplay();
     }
+
+    /**
+     * handleCheckoutClick method that will handle the checkout button.
+     */
+    private void handleCheckoutClick() {
+        if (cartItems.isEmpty()) {
+            Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        showCheckoutStep1();
+    }
+
+    /**
+     * updateCartDisplay method that wil update the cart view.
+     */
+    private void updateCartDisplay() {
+        displayItems.clear();
+        double totalPrice = 0.0;
+        for (CartItem cartItem : cartItems) {
+            Item item = cartItem.getItem();
+            int quantity = cartItem.getQuantity();
+            double itemTotal = item.getPrice() * quantity;
+            displayItems.add(String.format("%s - $%.2f x %d = $%.2f", item.getName(), item.getPrice(), quantity, itemTotal));
+            totalPrice += itemTotal;
+        }
+        totalPriceView.setText(String.format("Total: $%.2f", totalPrice));
+
+        // Toggle visibility of empty cart message, cart list, total price, and checkout button
+        if (cartItems.isEmpty()) {
+            emptyCartMessage.setVisibility(View.VISIBLE);
+            cartListView.setVisibility(View.GONE);
+            totalPriceView.setVisibility(View.GONE); // Hide total price when cart is empty
+            checkoutButton.setVisibility(View.GONE); // Hide checkout button when cart is empty
+        } else {
+            emptyCartMessage.setVisibility(View.GONE);
+            cartListView.setVisibility(View.VISIBLE);
+            totalPriceView.setVisibility(View.VISIBLE); // Show total price when cart has items
+            checkoutButton.setVisibility(View.VISIBLE); // Show checkout button when cart has items
+        }
+    }
+
+    /**
+     * removeItem method that will remove a specific item from the cart.
+     */
+    private void removeItem(int position) {
+        cartItems.remove(position);
+        saveCart();
+        updateCartDisplay();
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * saveCart method that will save the cart items.
+     */
+    private void saveCart() {
+        JSONArray jsonArray = new JSONArray();
+        try {
+            for (CartItem cartItem : cartItems) {
+                jsonArray.put(cartItem.toJson());
+            }
+            editor.putString(KEY_CART_ITEMS, jsonArray.toString());
+            editor.commit();
+        } catch (JSONException e) {
+            editor.putString(KEY_CART_ITEMS, "[]");
+            editor.commit();
+            Toast.makeText(this, "Error saving cart", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     /**
      * setUpListView method that will initialize the cart items list view.
@@ -176,78 +249,6 @@ public class CartActivity extends AppCompatActivity {
             }
         };
         cartListView.setAdapter(adapter);
-    }
-
-    private void setUpListeners() {
-        checkoutButton.setOnClickListener(v -> handleCheckoutClick());
-    }
-
-    /**
-     * handleCheckoutClick method that will handle the checkout button.
-     */
-    private void handleCheckoutClick() {
-        if (cartItems.isEmpty()) {
-            Toast.makeText(this, "Cart is empty", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        showCheckoutStep1();
-    }
-
-    /**
-     * updateCartDisplay method that wil update the cart view.
-     */
-    private void updateCartDisplay() {
-        displayItems.clear();
-        double totalPrice = 0.0;
-        for (CartItem cartItem : cartItems) {
-            Item item = cartItem.getItem();
-            int quantity = cartItem.getQuantity();
-            double itemTotal = item.getPrice() * quantity;
-            displayItems.add(String.format("%s - $%.2f x %d = $%.2f", item.getName(), item.getPrice(), quantity, itemTotal));
-            totalPrice += itemTotal;
-        }
-        totalPriceView.setText(String.format("Total: $%.2f", totalPrice));
-
-        // Toggle visibility of empty cart message, cart list, total price, and checkout button
-        if (cartItems.isEmpty()) {
-            emptyCartMessage.setVisibility(View.VISIBLE);
-            cartListView.setVisibility(View.GONE);
-            totalPriceView.setVisibility(View.GONE); // Hide total price when cart is empty
-            checkoutButton.setVisibility(View.GONE); // Hide checkout button when cart is empty
-        } else {
-            emptyCartMessage.setVisibility(View.GONE);
-            cartListView.setVisibility(View.VISIBLE);
-            totalPriceView.setVisibility(View.VISIBLE); // Show total price when cart has items
-            checkoutButton.setVisibility(View.VISIBLE); // Show checkout button when cart has items
-        }
-    }
-
-    /**
-     * removeItem method that will remove a specific item from the cart.
-     */
-    private void removeItem(int position) {
-        cartItems.remove(position);
-        saveCart();
-        updateCartDisplay();
-        adapter.notifyDataSetChanged();
-    }
-
-    /**
-     * saveCart method that will save the cart items.
-     */
-    private void saveCart() {
-        JSONArray jsonArray = new JSONArray();
-        try {
-            for (CartItem cartItem : cartItems) {
-                jsonArray.put(cartItem.toJson());
-            }
-            editor.putString(KEY_CART_ITEMS, jsonArray.toString());
-            editor.commit();
-        } catch (JSONException e) {
-            editor.putString(KEY_CART_ITEMS, "[]");
-            editor.commit();
-            Toast.makeText(this, "Error saving cart", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void showCheckoutStep1() {
@@ -331,6 +332,9 @@ public class CartActivity extends AppCompatActivity {
             }
         }
 
+        // Save the order before clearing the cart
+        saveOrder();
+
         // Update stock
         for (CartItem cartItem : cartItems) {
             Item item = cartItem.getItem();
@@ -351,7 +355,170 @@ public class CartActivity extends AppCompatActivity {
         displayItems.clear();
         adapter.notifyDataSetChanged();
         totalPriceView.setText("Total: $0.00");
+        updateCartDisplay();
 
         Toast.makeText(this, "Checkout successful", Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Save the current cart as an order
+     */
+    private void saveOrder() {
+        try {
+            // Get current orders
+            JSONArray ordersArray = new JSONArray(pref.getString(KEY_ORDERS, "[]"));
+
+            // Create new order
+            JSONObject order = new JSONObject();
+
+            // Add timestamp
+            String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
+            order.put("timestamp", timeStamp);
+
+            // Add items
+            JSONArray itemsArray = new JSONArray();
+            double totalPrice = 0.0;
+            for (CartItem cartItem : cartItems) {
+                JSONObject itemJson = cartItem.toJson();
+                itemsArray.put(itemJson);
+                totalPrice += cartItem.getItem().getPrice() * cartItem.getQuantity();
+            }
+            order.put("items", itemsArray);
+            order.put("total", totalPrice);
+
+            // Add order to orders array
+            ordersArray.put(order);
+
+            // Save back to preferences
+            editor.putString(KEY_ORDERS, ordersArray.toString());
+            editor.commit();
+        } catch (JSONException e) {
+            Toast.makeText(this, "Error saving order", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setUpListeners() {
+        checkoutButton.setOnClickListener(v -> handleCheckoutClick());
+        previousOrdersButton.setOnClickListener(v -> showPreviousOrders());
+    }
+
+    /**
+     * Show previous orders dialog
+     */
+    /**
+     * Show previous orders dialog
+     */
+    private void showPreviousOrders() {
+        try {
+            JSONArray ordersArray = new JSONArray(pref.getString(KEY_ORDERS, "[]"));
+
+            if (ordersArray.length() == 0) {
+                Toast.makeText(this, "No previous orders found", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Create a layout to display orders
+            LinearLayout layout = new LinearLayout(this);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            layout.setPadding(16, 16, 16, 16);
+
+            // Add each order to the layout
+            for (int i = 0; i < ordersArray.length(); i++) {
+                try {
+                    JSONObject order = ordersArray.getJSONObject(i);
+                    String timestamp = order.getString("timestamp");
+                    double total = order.getDouble("total");
+                    JSONArray items = order.getJSONArray("items");
+
+                    TextView orderView = new TextView(this);
+                    orderView.setText(String.format(Locale.getDefault(),
+                            "Order #%d - %s\nTotal: $%.2f\nItems: %d",
+                            i + 1, timestamp, total, items.length()));
+                    orderView.setTextColor(Color.WHITE);
+                    orderView.setPadding(0, 8, 0, 8);
+
+                    // Add click listener to show order details
+                    int finalI = i;
+                    orderView.setOnClickListener(v -> {
+                        try {
+                            showOrderDetails(ordersArray.getJSONObject(finalI));
+                        } catch (JSONException e) {
+                            Toast.makeText(CartActivity.this, "Error loading order details", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    layout.addView(orderView);
+
+                    // Add divider except for last item
+                    if (i < ordersArray.length() - 1) {
+                        View divider = new View(this);
+                        divider.setLayoutParams(new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT, 1));
+                        divider.setBackgroundColor(Color.GRAY);
+                        layout.addView(divider);
+                    }
+                } catch (JSONException e) {
+                    Toast.makeText(this, "Error processing order #" + (i + 1), Toast.LENGTH_SHORT).show();
+                    continue;
+                }
+            }
+
+            // Show the orders in a dialog
+            new AlertDialog.Builder(this)
+                    .setTitle("Previous Orders")
+                    .setView(layout)
+                    .setPositiveButton("Close", null)
+                    .show();
+
+        } catch (JSONException e) {
+            Toast.makeText(this, "Error loading orders", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Show details of a specific order
+     */
+    private void showOrderDetails(JSONObject order) throws JSONException {
+        StringBuilder details = new StringBuilder();
+
+        String timestamp = order.getString("timestamp");
+        double total = order.getDouble("total");
+        JSONArray items = order.getJSONArray("items");
+
+        details.append("Order Date: ").append(timestamp).append("\n\n");
+        details.append("Items:\n");
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject itemJson = items.getJSONObject(i);
+            int itemId = itemJson.getInt("item_id");
+            int quantity = itemJson.getInt("quantity");
+
+            Item item = null;
+            for (Item it : ItemManager.getAllItems(this)) {
+                if (it.getId() == itemId) {
+                    item = it;
+                    break;
+                }
+            }
+
+            if (item != null) {
+                details.append(String.format(Locale.getDefault(),
+                        "- %s x%d @ $%.2f each = $%.2f\n",
+                        item.getName(), quantity, item.getPrice(), item.getPrice() * quantity));
+            }
+        }
+
+        details.append(String.format(Locale.getDefault(), "\nTotal: $%.2f", total));
+
+        TextView detailsView = new TextView(this);
+        detailsView.setText(details.toString());
+        detailsView.setTextColor(Color.WHITE);
+        detailsView.setPadding(16, 16, 16, 16);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Order Details")
+                .setView(detailsView)
+                .setPositiveButton("Close", null)
+                .show();
     }
 }
