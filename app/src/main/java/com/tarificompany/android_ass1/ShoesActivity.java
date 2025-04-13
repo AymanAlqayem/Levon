@@ -41,7 +41,7 @@ public class ShoesActivity extends AppCompatActivity {
         // Load items from ItemManager and filter for Jewelry.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
-            if (item.getId() >= 128 && item.getId() <= 147) {
+            if (item.getId() >= 148 && item.getId() <= 166) {
                 itemArrayList.add(item);
             }
         }

@@ -310,6 +310,25 @@ public class ItemManager {
      * shoesItems method that will setUp shoes items.
      */
     public static void shoesItems() {
-
+        allItems.add(new Item(148, "Nike Men's Air Force", "Nike Men's Air Force 1'07 Shoes Basketball", R.drawable.s1, 200, 33, "Shoes"));
+        allItems.add(new Item(149, "Nike Dunk", "Nike Dunk Low Mens Sneakers", R.drawable.s2, 155, 36, "Shoes"));
+        allItems.add(new Item(150, "Nike Women's ", "Nike Women's Low-Top Sneakers", R.drawable.s3, 92, 30, "Shoes"));
+        allItems.add(new Item(151, "Nike Men's ", "Nike Men's Sneaker,Running Shoes", R.drawable.s4, 190, 30, "Shoes"));
+        allItems.add(new Item(152, "Nike Men's", "Nike Men's Formation Gymnastics Shoe", R.drawable.s5, 92, 18, "Shoes"));
+        allItems.add(new Item(153, "NIKE Sportswear", "NIKE Sportswear Women's Shoes", R.drawable.s6, 120, 18, "Shoes"));
+        allItems.add(new Item(154, "New Balance Men's", "New Balance Men's 608 V5 Casual Comfort Cross Trainer\n", R.drawable.s7, 70, 24, "Shoes"));
+        allItems.add(new Item(155, "adidas Women's ", "adidas Women's VL Court 3.0 Sneaker", R.drawable.s8, 70, 18, "Shoes"));
+        allItems.add(new Item(156, "DREAM PAIRS Women's", "DREAM PAIRS Women's Tennis Sneakers Walking Nia Flat Low-Top Casual Lace-Up Comfortable Fashion Sneakers Shoes.", R.drawable.s9, 45, 29, "Shoes"));
+        allItems.add(new Item(157, "Nike Women", "Nike Women Dunk Low Sneakers", R.drawable.s10, 150, 16, "Shoes"));
+        allItems.add(new Item(158, "Nike Men's", "Nike Men's Air Max Excee Shoes Sneaker", R.drawable.s11, 115, 15, "Shoes"));
+        allItems.add(new Item(159, "Women's Platform Retro ", "Women's Platform Retro Style Sneakers - Lace-up Classic Fashion Stylish Tennis Running Walking Shoes", R.drawable.s12, 45, 17, "Shoes"));
+        allItems.add(new Item(160, "Dr. Martens ", "Dr. Martens womens Sinclair", R.drawable.s13, 350, 5, "Shoes"));
+        allItems.add(new Item(161, "Vans Men's ", "Vans Men's Seldan Sneaker", R.drawable.s14, 110, 15, "Shoes"));
+        allItems.add(new Item(162, "Men's Black Classic Low Top ", "Men's Black Classic Low Top Shoes Canvas Fashion Sneaker with Soft Insole Causal Dress Shoes for Men Comfortable Walking Shoes", R.drawable.s15, 45, 9, "Shoes"));
+        allItems.add(new Item(162, "hash bubbie Mens", "hash bubbie Mens Canvas Shoes Classic Men's Canvas Sneakers Low Top Tennis Shoes Lace up Comfortable Skate Casual Shoes", R.drawable.s16, 25, 8, "Shoes"));
+        allItems.add(new Item(163, "yageyan Men’s", "yageyan Men’s Low Top Canvas Walking Shoes Lace-up Fashion Sneakers Casual", R.drawable.s17, 89, 23, "Shoes"));
+        allItems.add(new Item(164, "yageyan Men", "yageyan Men Canvas Low top Shoes Classic Casual Sneakers Black and White Fashion Shoes", R.drawable.s18, 29, 15, "Shoes"));
+        allItems.add(new Item(165, "Unisex Low Top Lace Up Casual ", "Unisex Low Top Lace Up Casual Canvas Shoes for Women and Men, Comfortable Lightweight Classic Fashion Sneakers Popular 2024, Zapatillas Casual De Lona De Moda para Hombre Y Mujer", R.drawable.s19, 69, 15, "Shoes"));
+        allItems.add(new Item(166, "yageyan Men", "yageyan Men Canvas Low top Shoes Classic Casual Sneakers Black and White Fashion Shoes", R.drawable.s20, 801, 19, "Shoes"));
     }
 }
