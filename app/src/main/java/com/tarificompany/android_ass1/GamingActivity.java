@@ -31,6 +31,9 @@ public class GamingActivity extends AppCompatActivity {
         loadItems();
     }
 
+    /**
+     * loadItems method that will load gaming items.
+     */
     public void loadItems() {
         TextView title = findViewById(R.id.category_title);
         title.setText("Gaming");
@@ -38,7 +41,7 @@ public class GamingActivity extends AppCompatActivity {
         // Load items from ItemManager and filter for Jewelry.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
-            if (item.getId() >= 1 && item.getId() <= 24) {
+            if (item.getId() >= 25 && item.getId() <= 51) {
                 itemArrayList.add(item);
             }
         }

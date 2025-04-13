@@ -31,6 +31,9 @@ public class WatchesActivity extends AppCompatActivity {
         loadItems();
     }
 
+    /**
+     * loadItems method that will load watches items.
+     */
     public void loadItems() {
         TextView title = findViewById(R.id.category_title);
         title.setText("Watches");
