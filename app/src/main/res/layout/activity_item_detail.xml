@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- Image for the item -->
     <ImageView
         android:id="@+id/item_image"
         android:layout_width="0dp"
@@ -18,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Item Name -->
     <TextView
         android:id="@+id/item_name"
         android:layout_width="0dp"
@@ -30,7 +28,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_image" />
 
-    <!-- Item Description -->
     <TextView
         android:id="@+id/item_description"
         android:layout_width="0dp"
@@ -43,7 +40,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_name" />
 
-    <!-- Item Price -->
     <TextView
         android:id="@+id/item_price"
         android:layout_width="0dp"
@@ -55,7 +51,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_description" />
 
-    <!-- Stock Message -->
     <TextView
         android:id="@+id/stock_message"
         android:layout_width="0dp"
@@ -67,7 +62,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_price" />
 
-    <!-- Quantity Selector -->
     <LinearLayout
         android:id="@+id/quantity_layout"
         android:layout_width="0dp"
@@ -108,7 +102,6 @@
             android:src="@android:drawable/ic_media_ff" />
     </LinearLayout>
 
-    <!-- Add to Cart Button -->
     <Button
         android:id="@+id/add_to_cart_button"
         android:layout_width="0dp"
@@ -124,7 +117,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/quantity_layout" />
 
-    <!-- Add to Favorites Button -->
     <Button
         android:id="@+id/favorite_button"
         android:layout_width="0dp"

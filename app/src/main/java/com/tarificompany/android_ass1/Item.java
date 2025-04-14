@@ -10,7 +10,7 @@ public class Item {
     private int imageId;
     private double price;
     private int stock;
-    private String category; // New field
+    private String category;
 
     public Item(int id, String name, String description, int imageId, double price, int stock, String category) {
         this.id = id;

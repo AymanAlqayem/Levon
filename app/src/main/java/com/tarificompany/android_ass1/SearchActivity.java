@@ -71,13 +71,20 @@ public class SearchActivity extends AppCompatActivity {
     private void setupCategorySpinner() {
         ArrayList<String> categories = new ArrayList<>();
         categories.add("All Categories");
-        categories.add("Electronics");
-        categories.add("Clothing");
-        categories.add("Books");
-        categories.add("Sports");
-        categories.add("Toys");
-        categories.add("Jewelry");
-        categories.add("Home Appliances");
+        categories.add("Watches");
+        categories.add("Gaming");
+        categories.add("Fitness");
+        categories.add("Perfume");
+        categories.add("T-shirt");
+        categories.add("Jeans");
+        categories.add("Jacket");
+        categories.add("Shoes");
+        categories.add("Home");
+        categories.add("Laptops");
+        categories.add("Playstation consoles");
+        categories.add("Playstation console games");
+        categories.add("Airpods");
+        categories.add("Phone cases");
 
         ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(this, R.layout.spinner_item_white, categories);
         categoryAdapter.setDropDownViewResource(R.layout.spinner_item_white);

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class ItemManager {
@@ -75,7 +78,7 @@ public class ItemManager {
             //SetUp phone cases.
             phoneCases();
 
-
+            //Save items to shared preferences.
             saveItemsToSharedPref();
         } else {
             loadItemsFromSharedPref();
@@ -89,16 +92,14 @@ public class ItemManager {
         String itemsJson = pref.getString(KEY_ALL_ITEMS, "[]");
         allItems = new ArrayList<>();
 
-        // Simplified: Assuming Item.fromJson handles JSON parsing internally
-        org.json.JSONArray jsonArray;
+        JSONArray jsonArray;
         try {
             jsonArray = new org.json.JSONArray(itemsJson);
             for (int i = 0; i < jsonArray.length(); i++) {
-                org.json.JSONObject jsonItem = jsonArray.getJSONObject(i);
+                JSONObject jsonItem = jsonArray.getJSONObject(i);
                 allItems.add(Item.fromJson(jsonItem));
             }
         } catch (org.json.JSONException e) {
-            // Simplified error handling: reset to default items if loading fails
             setUpItems(null);
         }
     }
@@ -107,7 +108,7 @@ public class ItemManager {
      * saveItemsToSharedPref method that will save items into shared preferences.
      */
     public static void saveItemsToSharedPref() {
-        org.json.JSONArray jsonArray = new org.json.JSONArray();
+        JSONArray jsonArray = new JSONArray();
         try {
             for (Item item : allItems) {
                 jsonArray.put(item.toJson());

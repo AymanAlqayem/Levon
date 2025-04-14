@@ -10,9 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomePageActivity extends AppCompatActivity {
@@ -135,7 +133,7 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     /**
-     * handleNavigationView method that will handle the the views in the nav.
+     * handleNavigationView method that will handle the views in the nav.
      */
     public void handleNavigationView() {
         // Set up the BottomNavigationView
@@ -156,6 +154,11 @@ public class HomePageActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_cart) {
                 // Navigate to the CartActivity
                 intent = new Intent(HomePageActivity.this, CartActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+                // Navigate to the ProfileActivity
+                intent = new Intent(HomePageActivity.this, ProfileActivity.class);
                 startActivity(intent);
                 return true;
             }

@@ -13,11 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
@@ -38,7 +34,7 @@ public class TShirtActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.category_title);
         title.setText("T-Shirt");
 
-        // Load items from ItemManager and filter for Jewelry.
+        // Load items from ItemManager and filter for T-Shirt.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
             if (item.getId() >= 92 && item.getId() <= 108) {
@@ -103,6 +99,4 @@ public class TShirtActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
-
 }

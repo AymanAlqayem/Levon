@@ -34,7 +34,7 @@ public class AirpodsActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.category_title);
         title.setText("Airpods");
 
-        // Load items from ItemManager and filter for Jewelry.
+        // Load items from ItemManager and filter for Airpods.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
             if (item.getId() >= 205 && item.getId() <= 215) {

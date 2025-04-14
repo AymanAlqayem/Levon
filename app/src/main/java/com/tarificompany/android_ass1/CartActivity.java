@@ -38,7 +38,6 @@ public class CartActivity extends AppCompatActivity {
     private ArrayList<CartItem> cartItems;
     private ArrayList<String> displayItems;
     private ArrayAdapter<CartItem> adapter;
-
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
 
@@ -58,6 +57,9 @@ public class CartActivity extends AppCompatActivity {
         setUpListeners();
     }
 
+    /**
+     * setUpViews method that will initialize the views.
+     */
     private void setUpViews() {
         cartListView = findViewById(R.id.cart_list);
         totalPriceView = findViewById(R.id.total_price);
@@ -402,9 +404,6 @@ public class CartActivity extends AppCompatActivity {
         previousOrdersButton.setOnClickListener(v -> showPreviousOrders());
     }
 
-    /**
-     * Show previous orders dialog
-     */
     /**
      * Show previous orders dialog
      */

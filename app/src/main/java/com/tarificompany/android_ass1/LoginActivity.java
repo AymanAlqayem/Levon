@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -71,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * btnLoginOnClick method that will make actions for the login button.
      */
+
     public void btnLoginOnClick(View view) {
         String name = edtUserNameLogin.getText().toString();
         String pass = edtPassLogin.getText().toString();
@@ -78,22 +80,17 @@ public class LoginActivity extends AppCompatActivity {
         String storedName = pref.getString(NAME, "");
         String storedPass = pref.getString(PASS, "");
 
-        // Check if the entered username and password match the stored values.
         if (name.equals(storedName) && pass.equals(storedPass)) {
             if (loginCheckBox.isChecked()) {
-                // Save login info for next time
                 editor.putString(NAME, name);
                 editor.putString(PASS, pass);
                 editor.putBoolean(FLAG, true);
                 editor.commit();
             }
-
             Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show();
-
-            // Go to HomeActivity.
             Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
             startActivity(intent);
-            finish(); // Close login screen
+            finish();
         } else {
             Toast.makeText(this, "Invalid username or password!", Toast.LENGTH_SHORT).show();
         }

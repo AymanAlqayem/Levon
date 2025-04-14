@@ -13,11 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ArrayList;
 
@@ -38,7 +34,7 @@ public class JacketActivity extends AppCompatActivity {
         TextView title = findViewById(R.id.category_title);
         title.setText("Jackets");
 
-        // Load items from ItemManager and filter for Jewelry.
+        // Load items from ItemManager and filter for Jackets.
         ArrayList<Item> itemArrayList = new ArrayList<>();
         for (Item item : ItemManager.getAllItems(this)) {
             if (item.getId() >= 128 && item.getId() <= 147) {
@@ -103,5 +99,4 @@ public class JacketActivity extends AppCompatActivity {
             startActivity(intent);
         });
     }
-
 }

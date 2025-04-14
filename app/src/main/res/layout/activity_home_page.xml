@@ -30,12 +30,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:elevation="10dp"
-        app:itemIconTint="#FF1744 "
+        app:itemIconSize="32dp"
+        app:itemIconTint="#FFD700"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
