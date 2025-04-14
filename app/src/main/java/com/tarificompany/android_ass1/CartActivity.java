@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -416,61 +417,72 @@ public class CartActivity extends AppCompatActivity {
                 return;
             }
 
-            // Create a layout to display orders
-            LinearLayout layout = new LinearLayout(this);
-            layout.setOrientation(LinearLayout.VERTICAL);
-            layout.setPadding(16, 16, 16, 16);
+            // Inflate the dialog layout
+            View dialogView = LayoutInflater.from(this).inflate(R.layout.orders_dialog, null);
+            LinearLayout ordersContainer = dialogView.findViewById(R.id.ordersContainer);
 
-            // Add each order to the layout
+            // Add each order to the container
             for (int i = 0; i < ordersArray.length(); i++) {
                 try {
                     JSONObject order = ordersArray.getJSONObject(i);
-                    String timestamp = order.getString("timestamp");
-                    double total = order.getDouble("total");
-                    JSONArray items = order.getJSONArray("items");
+                    View orderView = LayoutInflater.from(this).inflate(R.layout.order_item, ordersContainer, false);
 
-                    TextView orderView = new TextView(this);
-                    orderView.setText(String.format(Locale.getDefault(),
-                            "Order #%d - %s\nTotal: $%.2f\nItems: %d",
-                            i + 1, timestamp, total, items.length()));
-                    orderView.setTextColor(Color.WHITE);
-                    orderView.setPadding(0, 8, 0, 8);
+                    TextView orderHeader = orderView.findViewById(R.id.orderHeader);
+                    TextView orderTotal = orderView.findViewById(R.id.orderTotal);
+                    TextView itemCount = orderView.findViewById(R.id.itemCount);
 
-                    // Add click listener to show order details
+                    String timestamp = formatTimestamp(order.getString("timestamp"));
+                    orderHeader.setText(String.format(Locale.getDefault(), "Order #%d • %s", i + 1, timestamp));
+                    orderTotal.setText(String.format(Locale.getDefault(), "Total: $%.2f", order.getDouble("total")));
+                    itemCount.setText(String.format(Locale.getDefault(), "Items: %d", order.getJSONArray("items").length()));
+
                     int finalI = i;
                     orderView.setOnClickListener(v -> {
                         try {
                             showOrderDetails(ordersArray.getJSONObject(finalI));
                         } catch (JSONException e) {
-                            Toast.makeText(CartActivity.this, "Error loading order details", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Error loading order details", Toast.LENGTH_SHORT).show();
                         }
                     });
 
-                    layout.addView(orderView);
-
-                    // Add divider except for last item
-                    if (i < ordersArray.length() - 1) {
-                        View divider = new View(this);
-                        divider.setLayoutParams(new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT, 1));
-                        divider.setBackgroundColor(Color.GRAY);
-                        layout.addView(divider);
-                    }
+                    ordersContainer.addView(orderView);
                 } catch (JSONException e) {
                     Toast.makeText(this, "Error processing order #" + (i + 1), Toast.LENGTH_SHORT).show();
-                    continue;
                 }
             }
 
-            // Show the orders in a dialog
+            // Remove last divider
+            if (ordersContainer.getChildCount() > 0) {
+                View lastChild = ordersContainer.getChildAt(ordersContainer.getChildCount() - 1);
+                View divider = lastChild.findViewById(R.id.divider);
+                if (divider != null) {
+                    divider.setVisibility(View.GONE);
+                }
+            }
+
+            // Show the dialog
             new AlertDialog.Builder(this)
-                    .setTitle("Previous Orders")
-                    .setView(layout)
+                    .setTitle("Order History")
+                    .setView(dialogView)
                     .setPositiveButton("Close", null)
                     .show();
 
         } catch (JSONException e) {
             Toast.makeText(this, "Error loading orders", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Helper method to format timestamp.
+     */
+    private String formatTimestamp(String timestamp) {
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+            SimpleDateFormat outputFormat = new SimpleDateFormat("MMM dd, yyyy 'at' hh:mm a", Locale.getDefault());
+            Date date = inputFormat.parse(timestamp);
+            return outputFormat.format(date);
+        } catch (ParseException e) {
+            return timestamp; // return original if parsing fails
         }
     }
 
