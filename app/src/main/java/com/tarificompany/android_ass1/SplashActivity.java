@@ -1,5 +1,6 @@
 package com.tarificompany.android_ass1;
 
+
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 
 public class SplashActivity extends AppCompatActivity {
 
