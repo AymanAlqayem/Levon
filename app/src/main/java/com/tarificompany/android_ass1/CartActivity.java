@@ -2,6 +2,7 @@ package com.tarificompany.android_ass1;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -255,25 +257,57 @@ public class CartActivity extends AppCompatActivity {
     }
 
     private void showCheckoutStep1() {
-        StringBuilder summary = new StringBuilder("Please review your cart:\n\n");
+        StringBuilder summary = new StringBuilder();
         double totalPrice = 0.0;
-        for (CartItem cartItem : cartItems) {
+
+        // Header
+        summary.append("Please Review Your Cart\n");
+        summary.append("-----------------------------\n\n");
+
+        // Items header
+        summary.append("Cart Items:\n");
+
+        // Iterate through cart items
+        for (int i = 0; i < cartItems.size(); i++) {
+            CartItem cartItem = cartItems.get(i);
             Item item = cartItem.getItem();
             int quantity = cartItem.getQuantity();
             double itemTotal = item.getPrice() * quantity;
-            summary.append(String.format("%s - $%.2f x %d = $%.2f\n", item.getName(), item.getPrice(), quantity, itemTotal));
-            totalPrice += itemTotal;
-        }
-        summary.append(String.format("\nTotal: $%.2f", totalPrice));
 
+            // Format each item with aligned columns
+            summary.append(String.format(Locale.getDefault(),
+                    "%-20s x%-3d $%6.2f = $%7.2f\n",
+                    item.getName(), quantity, item.getPrice(), itemTotal));
+
+            totalPrice += itemTotal;
+
+            // Add separator line between items (except for the last item)
+            if (i < cartItems.size() - 1) {
+                summary.append("---------------------------------\n");
+            }
+        }
+
+        // Footer with total
+        summary.append("\n-------------------------------\n");
+        summary.append(String.format(Locale.getDefault(), "Total: $%.2f", totalPrice));
+
+        // Create TextView with improved styling
         TextView messageTextView = new TextView(this);
         messageTextView.setText(summary.toString());
-        messageTextView.setTextColor(Color.WHITE);
-        messageTextView.setPadding(16, 16, 16, 16);
+        messageTextView.setTextColor(Color.BLACK);
+        messageTextView.setTextSize(16f);
+        messageTextView.setTypeface(Typeface.MONOSPACE);
+        messageTextView.setPadding(32, 32, 32, 32);
+        messageTextView.setBackgroundColor(Color.WHITE);
+
+        // Create a scrollable view to handle long carts
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(messageTextView);
+        scrollView.setPadding(16, 16, 16, 16);
 
         new AlertDialog.Builder(this)
                 .setTitle("Step 1: Review Cart")
-                .setView(messageTextView)
+                .setView(scrollView)
                 .setPositiveButton("Proceed", (dialog, which) -> showShippingStep())
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -496,9 +530,14 @@ public class CartActivity extends AppCompatActivity {
         double total = order.getDouble("total");
         JSONArray items = order.getJSONArray("items");
 
-        details.append("Order Date: ").append(timestamp).append("\n\n");
-        details.append("Items:\n");
+        // Header with order date
+        details.append("Order Date: ").append(timestamp).append("\n");
+        details.append("--------------------------\n\n");
 
+        // Items header
+        details.append("Items Ordered:\n");
+
+        // Iterate through items
         for (int i = 0; i < items.length(); i++) {
             JSONObject itemJson = items.getJSONObject(i);
             int itemId = itemJson.getInt("item_id");
@@ -513,22 +552,39 @@ public class CartActivity extends AppCompatActivity {
             }
 
             if (item != null) {
+                // Format each item with aligned columns
                 details.append(String.format(Locale.getDefault(),
-                        "- %s x%d @ $%.2f each = $%.2f\n",
+                        "%-20s x%-3d $%6.2f = $%7.2f\n",
                         item.getName(), quantity, item.getPrice(), item.getPrice() * quantity));
+            }
+
+            // Add separator line between items (except for the last item)
+            if (i < items.length() - 1) {
+                details.append("----------------------------------------\n");
             }
         }
 
-        details.append(String.format(Locale.getDefault(), "\nTotal: $%.2f", total));
+        // Footer with total
+        details.append("\n-------------------------\n");
+        details.append(String.format(Locale.getDefault(), "Total: $%.2f", total));
 
+        // Create TextView with improved styling
         TextView detailsView = new TextView(this);
         detailsView.setText(details.toString());
-        detailsView.setTextColor(Color.WHITE);
-        detailsView.setPadding(16, 16, 16, 16);
+        detailsView.setTextColor(Color.BLACK);
+        detailsView.setTextSize(16f);
+        detailsView.setTypeface(Typeface.MONOSPACE);
+        detailsView.setPadding(32, 32, 32, 32);
+        detailsView.setBackgroundColor(Color.WHITE);
+
+        // Create a scrollable view to handle long orders
+        ScrollView scrollView = new ScrollView(this);
+        scrollView.addView(detailsView);
+        scrollView.setPadding(16, 16, 16, 16);
 
         new AlertDialog.Builder(this)
                 .setTitle("Order Details")
-                .setView(detailsView)
+                .setView(scrollView)
                 .setPositiveButton("Close", null)
                 .show();
     }
