@@ -1,23 +1,72 @@
-# Levon - Online Shopping App
+# Levon – Online Shopping Android Application
 
-Levon is an Android-based online shopping app built to provide a seamless shopping experience. It allows users to browse products (e.g., airpods, jeans, laptops), manage their cart, favorite items, and handle user authentication.
+Levon is an **Android-based online shopping application** designed to deliver a seamless and intuitive mobile shopping experience.  
+The app allows users to browse products across multiple categories (such as airpods, jeans, and laptops), view detailed product information, manage a shopping cart, mark favorite items, and handle user authentication efficiently.
 
-## Project Structure
-- **Key Activities:** 
-  - `SplashActivity`: App entry point.
-  - `HomePageActivity`: Main page for browsing categories.
-  - `ItemDetailActivity`: Displays product details.
-  - `CartActivity`: Manages the shopping cart.
-  - Includes additional category-specific activities (e.g., `JeansActivity`, `AirpodsActivity`) for browsing various products.
-- **ItemManager:** A utility class that handles item data, stock management, and persistence using `SharedPreferences`, ensuring seamless integration across activities like `CartActivity` and `FavoritesActivity`.
-- **Layouts:** Custom layouts for cart items (`cart_item_layout.xml`), favorites (`favorite_item_layout.xml`), and item lists (`item_list_layout.xml`).
+---
 
-## Tech Stack
-- Built with Android Studio, Java, and XML.
+## 🚀 Key Features
+- Browse products by category
+- View detailed product information
+- Add and remove items from the shopping cart
+- Manage favorite products
+- User authentication flow
+- Persistent cart and favorites using local storage
+- Smooth navigation between activities
 
-## Setup
-1. Clone the repository.
-2. Open in Android Studio.
-3. Build and run on an emulator or device.
+---
 
-Explore the app to shop for your favorite products!
+## 🏗 Project Structure
+
+### Key Activities
+- **SplashActivity** – Application entry point  
+- **HomePageActivity** – Main screen for browsing product categories  
+- **ItemDetailActivity** – Displays detailed product information  
+- **CartActivity** – Manages shopping cart operations  
+- **Category Activities** – Dedicated activities for product categories such as:
+  - `JeansActivity`
+  - `AirpodsActivity`
+  - `LaptopActivity`
+
+### Item Management
+- **ItemManager**  
+  A utility class responsible for:
+  - Managing item data and stock
+  - Handling cart and favorite items
+  - Persisting data using **SharedPreferences**
+  - Ensuring data consistency across activities such as `CartActivity` and `FavoritesActivity`
+
+### UI Layouts
+- **cart_item_layout.xml** – Layout for cart items  
+- **favorite_item_layout.xml** – Layout for favorite items  
+- **item_list_layout.xml** – Layout for product listings  
+
+---
+
+## 🛠 Technology Stack
+- **Programming Language:** Java  
+- **Platform:** Android SDK  
+- **UI:** XML-based layouts  
+- **IDE:** Android Studio  
+- **Local Storage:** SharedPreferences  
+
+---
+
+## ⚙️ Installation & Setup
+
+### Prerequisites
+- Android Studio
+- JDK 8+
+- Android SDK
+
+### Steps
+```bash
+# Clone the repository
+git clone <repository-url>
+cd Levon-Online-Shopping-App
+
+# Open the project in Android Studio
+
+# Sync Gradle dependencies
+
+# Run the application on an emulator or physical device
